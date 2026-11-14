@@ -1391,8 +1391,21 @@ function updateLaunchBtn() {
   b.disabled = dis; b.textContent = tr(txt);
 }
 let toastTimer = 0;
-function showToast(html, tone) { const t = $('#toast'); t.className = tone || ''; t.innerHTML = html; clearTimeout(toastTimer); }
-function hideToast() { $('#toast').className = 'hidden'; }
+// Le message s'efface tout seul après un temps de lecture (plus long s'il est long ou s'il y a un indice),
+// pour ne pas cacher la scène. Un clic dessus le fait disparaître tout de suite.
+function showToast(html, tone) {
+  const t = $('#toast'); t.className = tone || ''; t.innerHTML = html; clearTimeout(toastTimer);
+  const len = t.textContent.length;
+  const ms = Math.min(12000, Math.max(4500, 2500 + len * 55));
+  toastTimer = setTimeout(fadeToast, ms);
+}
+function fadeToast() {
+  const t = $('#toast'); if (t.classList.contains('hidden')) return;
+  t.classList.add('fading'); clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, 700);
+}
+function hideToast() { clearTimeout(toastTimer); $('#toast').className = 'hidden'; }
+$('#toast').addEventListener('click', fadeToast);
 
 function showWin() {
   const L = S.L;
