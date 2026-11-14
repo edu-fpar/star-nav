@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Star Nav</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Les éléments marqués data-i sont traduits au démarrage (voir i18n.js) -->
+<canvas id="scene"></canvas>
+<div id="labels"></div>
+
+<header id="topbar">
+  <button id="btnMenu" class="chip" data-i-title title="Choisir un niveau">☰ <span class="txt" data-i>Niveaux</span></button>
+  <div id="levelName"></div>
+  <button id="btnLang" class="chip" title="Langue / Language"></button>
+  <button id="btnShare" class="chip" data-i-title title="Copier le lien direct vers ce niveau">🔗 <span class="txt" data-i>Partager</span></button>
+  <div id="attempts" class="chip"></div>
+</header>
+
+<section id="graphBox" class="panel hidden">
+  <div id="graphTitle"></div>
+  <canvas id="graph" width="440" height="250"></canvas>
+  <div id="graphLegend"></div>
+</section>
+
+<section id="mission" class="panel">
+  <h2 id="missionTitle"></h2>
+  <p id="missionText"></p>
+</section>
+
+<div id="toast" class="hidden"></div>
+
+<section id="controls" class="panel">
+  <div id="powerBox">
+    <div class="powerHead"><span id="powerTitle">🔥 Puissance</span><span id="powerWord"></span></div>
+    <div class="sliderWrap">
+      <div id="ticks"></div>
+      <div id="centerMark" class="hidden"></div>
+      <input id="power" type="range" min="0" max="100" step="1" value="40">
+    </div>
+    <div class="powerEnds"><span id="endL">doux</span><span id="endR">très fort</span></div>
+  </div>
+  <div id="power2Box" class="hidden">
+    <div class="powerHead"><span id="power2Title"></span><span id="power2Word"></span></div>
+    <div class="sliderWrap short">
+      <input id="power2" type="range" min="0" max="100" step="1" value="40">
+    </div>
+    <div class="powerEnds"><span id="end2L"></span><span id="end2R"></span></div>
+  </div>
+  <div id="crewBox" class="hidden">
+    <span id="crewFace">😀</span>
+    <div class="gauge"><span data-i>Écrasement des astronautes</span><div class="bar"><i id="gCrew"></i><em class="safe" id="crewSafe"></em></div></div>
+  </div>
+  <div id="timingBox" class="hidden">
+    <p id="timingText"></p>
+  </div>
+  <div id="landerBox" class="hidden">
+    <div class="gauge"><span data-i>Vitesse de chute</span><div class="bar"><i id="gSpeed"></i><em class="safe"></em></div></div>
+    <div class="gauge"><span data-i>Carburant</span><div class="bar"><i id="gFuel"></i></div></div>
+  </div>
+  <div class="row">
+    <button id="btnSlow" class="chip toggle" data-i data-i-title title="Ralenti">🐢 Ralenti</button>
+    <button id="btnLaunch" class="launch">🚀 LANCER</button>
+    <button id="btnCam" class="chip" data-i data-i-title title="Recentrer la vue">🎯 Vue</button>
+  </div>
+</section>
+
+<div id="menu" class="overlay">
+  <div class="card wide">
+    <h1>⭐ Star Nav</h1>
+    <p class="intro" data-i>Ici, pas de calcul : tu <b>essaies</b>, tu <b>regardes</b> ce qui se passe, et tu <b>ajustes</b>. Ta trajectoire ratée reste dessinée en pointillés fantômes pour t'aider à corriger la suivante.</p>
+    <div id="levelList"></div>
+    <p class="tip" data-i>Astuce : fais glisser l'écran pour tourner autour de la scène, molette pour zoomer. Barre d'espace = LANCER.</p>
+  </div>
+</div>
+
+<div id="win" class="overlay hidden">
+  <div class="card">
+    <div class="bravo" data-i>🎉 Bravo !</div>
+    <div id="winStars"></div>
+    <p id="winSub"></p>
+    <h3 data-i>Ce que tu viens de découvrir</h3>
+    <p id="winText"></p>
+    <div class="row">
+      <button id="btnReplay" class="chip" data-i>↺ Rejouer</button>
+      <button id="btnNext" class="launch small" data-i>Niveau suivant ➜</button>
+    </div>
+  </div>
+</div>
+
+<div id="loadError" class="overlay hidden">
+  <div class="card"><h2>Oups / Oops</h2>
+    <p>Le moteur 3D n'a pas pu se charger. Vérifie la connexion Internet puis recharge la page.</p>
+    <p>The 3D engine could not load. Check your Internet connection and reload the page.</p></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="i18n.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
