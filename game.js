@@ -723,6 +723,7 @@ function buildLevel(i) {
   document.body.classList.toggle('hasGraph', !!L.graph);
   $('#graphBox').classList.toggle('hidden', !L.graph);
   GRAPH.setup();
+  $('#mission').classList.remove('collapsed'); $('#graphBox').classList.remove('open');
   hideToast(); updateAttempts(); updateLaunchBtn();
   store.set('level', i);
   setLevelLink(i);
@@ -842,6 +843,7 @@ function launch() {
   if (L.kind === 'binary') startTwin();
   S.chk.nextBead = 0;
   GRAPH.begin();
+  if (compactScreen()) $('#mission').classList.add('collapsed');
   hideToast(); updateAttempts(); updateLaunchBtn();
 }
 
@@ -1683,6 +1685,11 @@ function buildMenu() {
 }
 
 $('#btnLaunch').onclick = launch;
+// Sur téléphone, le panneau de mission se replie après le lancement ; on le rouvre en le touchant.
+// Sur ordinateur, ces classes n'ont aucun effet visible.
+const compactScreen = () => matchMedia('(max-width:520px) and (orientation:portrait), (max-height:500px) and (orientation:landscape)').matches;
+$('#mission').addEventListener('click', () => $('#mission').classList.toggle('collapsed'));
+$('#graphBox').addEventListener('click', () => $('#graphBox').classList.toggle('open'));
 $('#btnMenu').onclick = () => { buildMenu(); $('#menu').classList.remove('hidden'); };
 $('#btnReplay').onclick = () => { $('#win').classList.add('hidden'); buildLevel(S.li); };
 $('#btnNext').onclick = () => { $('#win').classList.add('hidden'); buildLevel(Math.min(S.li + 1, LEVELS.length - 1)); };
@@ -1714,7 +1721,10 @@ btnL.addEventListener('contextmenu', e => e.preventDefault());
 
 /* ------------------------------------------------------------------ caméra */
 const cam = { c: new THREE.Vector3(), d: 20, el: 1, az: 0 };
-function resetCamera() { const C = S.L.cam; cam.c.copy(P3(C.c[0], C.c[1])); cam.d = C.d; cam.el = C.el; cam.az = C.az || 0; }
+// Écran en hauteur (téléphone tenu droit) : on recule la caméra pour voir toute la largeur de la scène.
+// Sur un écran plus large que haut (ordinateur), rien ne change.
+function portraitZoom() { const r = window.innerHeight / window.innerWidth; return r > 1 ? Math.min(1.6, 0.6 + 0.45 * r) : 1; }
+function resetCamera() { const C = S.L.cam; cam.c.copy(P3(C.c[0], C.c[1])); cam.d = Math.min(120, C.d * portraitZoom()); cam.el = C.el; cam.az = C.az || 0; }
 function applyCamera() {
   const ce = Math.cos(cam.el);
   camera.position.set(cam.c.x + cam.d * ce * Math.sin(cam.az), cam.c.y + cam.d * Math.sin(cam.el), cam.c.z + cam.d * ce * Math.cos(cam.az));
@@ -1739,10 +1749,17 @@ const endPtr = e => { pointers.delete(e.pointerId); drag = pointers.size === 1 ?
 canvas.addEventListener('pointerup', endPtr); canvas.addEventListener('pointercancel', endPtr);
 canvas.addEventListener('wheel', e => { e.preventDefault(); cam.d = Math.min(120, Math.max(6, cam.d * (1 + e.deltaY * 0.001))); }, { passive: false });
 
+let wasPortrait = null;
 function resize() {
   const w = window.innerWidth, h = window.innerHeight;
   renderer.setSize(w, h, false); camera.aspect = w / h;
   camera.fov = w < h ? 70 : 50; camera.updateProjectionMatrix();
+  // téléphone couché : les commandes sont à droite, on décale la scène vers la partie libre à gauche
+  if (matchMedia('(max-height:500px) and (orientation:landscape)').matches) camera.setViewOffset(w, h, Math.round(w * 0.14), 0, w, h);
+  else camera.clearViewOffset();
+  // téléphone qu'on tourne : on recadre la scène
+  if (wasPortrait != null && wasPortrait !== (w < h) && S.L) resetCamera();
+  wasPortrait = w < h;
 }
 window.addEventListener('resize', resize);
 
