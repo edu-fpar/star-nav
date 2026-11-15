@@ -21,7 +21,7 @@ Most of us met orbital mechanics, if ever, as a page of formulas. Star Nav takes
 
 ![Level 1: three attempts — too weak, too strong, then right in the green zone](screenshots/jump-en.png)
 
-## The 20 levels
+## The 25 levels
 
 Each title opens the level directly.
 
@@ -78,6 +78,16 @@ Each title opens the level directly.
 | 20 | [✨ Two suns](https://edu-fpar.github.io/star-nav/#level-20) | Chaos: a twin ship launched 1 % faster ends up somewhere else entirely |
 
 ![Level 20: the ship and its purple twin leave almost together, then their paths split apart](screenshots/suns-en.png)
+
+**Part 7 — Special missions**
+
+| # | Level | What the child discovers |
+|---|---|---|
+| 21 | [🏓 Bouncing off the air](https://edu-fpar.github.io/star-nav/#level-21) | Too flat and the capsule bounces off the air; too steep and it burns: aim for the corridor in between |
+| 22 | [📡 The satellite that stands still](https://edu-fpar.github.io/star-nav/#level-22) | The higher a satellite, the longer its lap; at the right height it turns with the Earth |
+| 23 | [🧨 The multi-stage rocket](https://edu-fpar.github.io/star-nav/#level-23) | An empty tank is dead weight: dropping it at the right moment takes you higher |
+| 24 | [🛑 The backwards slingshot](https://edu-fpar.github.io/star-nav/#level-24) | Passing in front of a planet slows you down: the same planet can speed you up or brake you |
+| 25 | [☄️ Push the asteroid aside](https://edu-fpar.github.io/star-nav/#level-25) | A small push given early beats a big one given late (like the DART mission) |
 
 ## Controls
 

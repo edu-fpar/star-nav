@@ -147,14 +147,45 @@ const LEVELS = [
     discover: "Entre deux astres, il existe un point où leurs attractions s'équilibrent. Comme la Lune est plus petite, ce point est <b>tout près de la Lune</b> !<br><br>Mais l'équilibre est fragile : un tout petit écart, et un des deux gagne. Ces points existent vraiment : on les appelle les <b>points de Lagrange</b>, et on y installe des télescopes spatiaux." },
   { kind: 'free', icon: '♾️', title: 'Le grand huit', short: 'Faire le tour de la Lune et revenir', speed: 1.4,
     mission: "Lance la fusée pour qu'elle <b>contourne la Lune</b> et <b class=g>revienne vers la Terre</b> toute seule, sans rallumer le moteur. Sa trajectoire dessinera un grand <b>8</b> !",
-    cam: { c: [4.5, 0], d: 25, el: 1.2 }, moonX: 10, moonGM: 2.5, vRange: [5.2, 5.8],
+    cam: { c: [4.5, 0], d: 25, el: 1.2 }, moonX: 10, moonGM: 2.5, vRange: [5.2, 5.8], def: 10,
     hint: "💡 Pour faire demi-tour, la fusée doit passer <b>derrière</b> la Lune, assez près pour être bien tirée… sans s'écraser dessus.",
     discover: "La Lune peut servir de <b>demi-tour gratuit</b> ! En passant derrière elle, la fusée est tirée et renvoyée vers la Terre, sans carburant.<br><br>C'est le « retour libre », la trajectoire en 8 qu'on choisit pour les voyages vers la Lune : si le moteur tombe en panne, l'équipage rentre quand même à la maison. Et as-tu vu ? Avec un tout petit peu plus de puissance, la fusée se met à tourner entre la Terre et la Lune de façon très compliquée…" },
   { kind: 'binary', icon: '✨', title: 'Deux soleils', short: 'Le problème à trois corps',
     mission: "Deux soleils tournent l'un autour de l'autre. Lance ton vaisseau pour qu'il fasse <b class=g>un tour complet</b> du système sans s'écraser ni être éjecté. Un <b class=s>vaisseau jumeau</b> (violet) part en même temps, à peine plus vite…",
-    speed: 2.0, cam: { c: [0, 0], d: 34, el: 1.2 }, R0: 9, starA: 1.5, starGM: 20, vRange: [0.8, 3.2], keepSim: true,
+    speed: 2.0, cam: { c: [0, 0], d: 34, el: 1.2 }, R0: 9, starA: 1.5, starGM: 20, vRange: [0.8, 3.2], keepSim: true, def: 10,
     hint: "💡 Près des deux soleils, tout devient imprévisible. Loin d'eux, ils tirent presque comme <b>un seul</b> gros soleil…",
     discover: "Avec deux corps (une planète et un soleil), le chemin est simple et se répète. Avec <b>trois corps</b>, il devient souvent <b>imprévisible</b> : regarde le jumeau, parti presque pareil, qui finit tout autrement ! C'est le célèbre <b>problème à trois corps</b>.<br><br>Mais loin des deux soleils, ils tirent presque comme un seul : l'orbite redevient calme. Les ingénieurs ne peuvent pas résoudre ce problème avec une formule : comme toi, ils calculent pas à pas, essai après essai." },
+
+  /* ---------- partie 7 : missions spéciales ---------- */
+  { kind: 'skip', icon: '🏓', title: "Le ricochet sur l'air", short: "L'angle du retour", part: 'Partie 7 — Missions spéciales',
+    mission: "La capsule revient de la Lune, <b>très vite</b> ! Choisis l'<b>angle</b> de son arrivée : elle doit traverser l'<b class=s>air</b> pour freiner, sans <b class=o>trop chauffer</b>, et se poser sur Terre.",
+    speed: 0.9, cam: { c: [-1.5, 1.5], d: 21, el: 1.2 }, r0: 9, v0: 3.2, a0: 2.2, atm: 3.0, Hs: 0.22, kd: 0.6, rpRange: [3.0, 1.4], heatMax: 8.5, keepSim: true,
+    s1: { title: "📐 Angle d'arrivée", l: 'à plat', r: 'très raide', words: ['tout à plat', 'à plat', 'en pente douce', 'raide', 'très raide'], def: 15 },
+    hint: "💡 Le ricochet, c'est quand l'angle est <b>trop à plat</b>. Les flammes, quand il est <b>trop raide</b>. Cherche le <b>couloir</b> entre les deux, en bougeant le curseur petit à petit.",
+    discover: "Pour revenir de l'espace, une capsule utilise l'<b>air</b> comme un frein : en le traversant, elle ralentit… et elle chauffe énormément.<br><br>Il faut arriver avec le bon angle. Trop à plat, la capsule <b>rebondit</b> sur l'air comme un galet sur l'eau et repart dans l'espace. Trop raide, elle freine trop fort d'un coup et <b>brûle</b>. Entre les deux, il y a un <b>couloir</b> étroit : c'est celui que visaient les astronautes qui revenaient de la Lune." },
+  { kind: 'geo', icon: '📡', title: 'Le satellite immobile', short: 'Tourner avec la Terre',
+    mission: "Place le satellite de télévision pour qu'il reste <b>toujours au-dessus</b> de la <b class=o>ville ★</b>, pendant que la Terre tourne. Choisis sa <b>hauteur</b>.",
+    speed: 1.6, cam: { c: [0, 0], d: 25, el: 1.25 }, rRange: [3, 10], wE: 0.43, tol: 0.26, btn: '📡 PLACER', keepSim: true,
+    s1: { title: '⬆️ Hauteur du satellite', l: 'tout bas', r: 'très haut', words: ['tout bas', 'bas', 'moyen', 'haut', 'très haut'], def: 20 },
+    hint: "💡 Regarde qui gagne la course : si le satellite part <b>devant</b> la ville, place-le plus <b>haut</b>. Si la ville le <b>dépasse</b>, place-le plus <b>bas</b>.",
+    discover: "Plus un satellite est <b>haut</b>, plus il met de temps à faire le tour de la Terre. Tout près, un tour prend une heure et demie. Très loin, comme la Lune, un mois !<br><br>Entre les deux, il existe une hauteur magique où le satellite fait son tour en <b>une journée</b>, exactement comme la Terre tourne sur elle-même. Vu d'en bas, il semble <b>immobile</b> dans le ciel : c'est pour ça qu'on peut fixer une antenne de télévision vers lui une fois pour toutes." },
+  { kind: 'stage', icon: '🧨', title: 'La fusée à étages', short: 'Larguer le poids inutile',
+    mission: "Ta fusée a un <b class=o>grand réservoir</b> (orange) et un petit. Pendant le vol, appuie sur <b>LARGUER</b> pour te débarrasser du grand réservoir. Atteins la <b class=g>zone verte</b> !",
+    zone: [4.9, 7.6], gm: 8, speed: 1.2, burnSpeed: 0.28, cam: { c: [0, 3.6], d: 18, el: 0.9 }, F: 7.19, q: 2.5, f1: 1, ms: 0.5, f2: 1, m0: 1, control: 'timing',
+    timingText: "⏱️ Appuie sur LANCER, puis sur <b>LARGUER</b> au bon moment pour lâcher le grand réservoir !",
+    hint: "💡 Regarde la jauge du <b>grand réservoir</b> : largue-le <b>juste quand il devient vide</b>. Avant, tu jettes du carburant ; après, tu traînes un poids mort.",
+    discover: "Un réservoir vide ne sert plus à rien… mais il pèse toujours ! Le moteur doit continuer à le pousser : c'est un <b>poids mort</b>.<br><br>En le larguant dès qu'il est vide, la fusée devient plus légère et le même moteur la fait aller plus vite. C'est pour ça que les vraies fusées sont faites de plusieurs <b>étages</b> qui se détachent les uns après les autres pendant la montée." },
+  { kind: 'sling', brake: true, icon: '🛑', title: "La catapulte à l'envers", short: 'Une planète pour freiner',
+    mission: "La <b class=g>station</b> est en haut à gauche, mais ta fusée ne sait que monter tout droit, et vite. Utilise la planète géante pour te faire <b class=o>freiner</b> et <b>dévier</b> jusqu'à la station. Choisis le bon moment pour décoller !",
+    speed: 0.8, cam: { c: [-4, 8.5], d: 50, el: 1.2 }, timing: true, target: { x: -10.5, y: 14.5, r: 3.2 },
+    hint: "💡 Souviens-toi du niveau 5 : passer <b>derrière</b> la planète, ça accélère. Pour freiner, il faut faire… <b>le contraire</b> !",
+    discover: "La même planète peut servir d'<b>accélérateur</b> ou de <b>frein</b> ! Derrière elle, elle t'emporte et tu gagnes de la vitesse. Devant elle, elle te tire en arrière et tu en perds.<br><br>Les sondes qui vont vers Mercure, tout près du Soleil, vont beaucoup trop vite pour s'y arrêter : elles passent plusieurs fois devant des planètes pour freiner, sans dépenser de carburant." },
+  { kind: 'deflect', icon: '☄️', title: "Dévier l'astéroïde", short: 'Une petite poussée, mais tôt', stars: true,
+    mission: "Un <b class=o>astéroïde</b> fonce vers la Terre ! Ta fusée est accrochée dessus. Règle la <b>force</b> de la poussée, puis appuie sur <b>POUSSER</b> au bon moment pour l'écarter.",
+    speed: 1.0, cam: { c: [11, 5], d: 38, el: 1.2 }, D: 30, u: 3, a0: 0.5, kf: 2, graph: 'push', btn: '🔥 POUSSER', keepSim: true,
+    s1: { title: '💪 Force de la poussée', l: 'toute petite', r: 'énorme', words: ['toute petite', 'petite', 'moyenne', 'grande', 'énorme'], def: 15 },
+    hint: "💡 Plus tu pousses <b>tôt</b>, plus l'astéroïde a le temps de s'écarter. Pousse <b>dès le début</b>, puis cherche la plus petite force qui suffit.",
+    discover: "Une toute petite poussée donnée <b>tôt</b> suffit à faire rater la Terre à un astéroïde : il a tout le temps de s'écarter, petit à petit. Plus on attend, plus il faut pousser fort… jusqu'à ce que ce soit impossible. Regarde ton carnet de bord : la limite <b>monte</b> vers la droite !<br><br>En 2022, la sonde <b>DART</b> de la NASA s'est écrasée exprès sur un petit astéroïde pour le pousser. Ça a marché : son chemin a changé. C'est pour ça qu'on surveille le ciel : repérer un astéroïde tôt, c'est pouvoir le dévier en douceur." },
 ];
 LEVELS[0].part = 'Partie 1 — Les bases';
 LEVELS.forEach(L => { if (!L.control) L.control = L.timing ? 'timing' : 'power'; });
@@ -269,7 +300,7 @@ function makeRocket() {
   const tank = new THREE.Group(); const tankMat = new THREE.MeshPhongMaterial({ color: 0xff9a3a });
   [-1, 1].forEach(sd => { const t = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.4, 12), tankMat); t.position.set(sd * 0.16, 0.2, 0); t.geometry.translate(0, -0.2, 0); tank.add(t); });
   tank.position.y = -0.05; tank.visible = false; g.add(tank);
-  return { group: g, flame, cargo, heat, tank };
+  return { group: g, flame, cargo, heat, tank, tankMat };
 }
 
 /* ------------------------------------------------------------------ traces */
@@ -349,6 +380,25 @@ function bodies() {
   return out;
 }
 function balanceX() { const L = S.L; return L.xRange[0] + (+$('#power').value) / 100 * (L.xRange[1] - L.xRange[0]); }
+// ricochet : le curseur choisit le point le plus bas qu'atteindrait la capsule s'il n'y avait pas d'air
+function skipStart() {
+  const L = S.L, P = +$('#power').value, rp = L.rpRange[0] + P / 100 * (L.rpRange[1] - L.rpRange[0]);
+  const vp = Math.sqrt(L.v0 * L.v0 + 2 * GM_EARTH * (1 / rp - 1 / L.r0));
+  const g = Math.acos(Math.min(1, rp * vp / (L.r0 * L.v0)));
+  const ca = Math.cos(L.a0), sa = Math.sin(L.a0);
+  return { rp, x: L.r0 * ca, y: L.r0 * sa,
+    vx: L.v0 * (-Math.cos(g) * sa - Math.sin(g) * ca), vy: L.v0 * (Math.cos(g) * ca - Math.sin(g) * sa) };
+}
+// satellite immobile : hauteur choisie au curseur
+function geoR() { const L = S.L; return L.rRange[0] + (+$('#power').value) / 100 * (L.rRange[1] - L.rRange[0]); }
+// astéroïde : position de départ, en route droit vers la Terre
+function asteroidStart() {
+  const L = S.L, c = Math.cos(L.a0), sn = Math.sin(L.a0);
+  return { x: L.D * c, y: L.D * sn, vx: -L.u * c, vy: -L.u * sn };
+}
+function asteroidMoment() { const W = S.world; return Math.min(100, Math.max(0, W.age / W.T0 * 100)); }
+// les niveaux où l'on part d'un mouvement déjà en cours (on ne peut pas relancer avant la fin)
+const movingStart = L => !!L.start || L.kind === 'deflect';
 
 /* point de départ et direction de la fusée pour chaque niveau */
 function padPose() {
@@ -358,7 +408,9 @@ function padPose() {
     case 'moon': return { x: 0, y: -(R_EARTH + 0.25), dx: 1, dy: 0 };
     case 'sling': return { x: 0, y: 0, dx: 0, dy: 1 };
     case 'lander': return { x: 0, y: 14, dx: 0, dy: 1 };
-    case 'fuel': case 'crew': return { x: 0, y: R_EARTH + 0.25, dx: 0, dy: 1 };
+    case 'fuel': case 'crew': case 'stage': return { x: 0, y: R_EARTH + 0.25, dx: 0, dy: 1 };
+    case 'skip': { const k = skipStart(); return { x: k.x, y: k.y, dx: k.vx, dy: k.vy }; }
+    case 'geo': { const r = geoR(), a = S.world.cityA || 0; return { x: r * Math.cos(a), y: r * Math.sin(a), dx: -Math.sin(a), dy: Math.cos(a) }; }
     case 'track': return { x: 3, y: 0, dx: 0, dy: 1 };
     case 'balance': return { x: balanceX(), y: 0, dx: 0, dy: 1 };
     case 'free': return { x: -(R_EARTH + 0.25), y: 0, dx: 0, dy: -1 };
@@ -380,12 +432,19 @@ function resetShip() {
     const { r, a } = L.start, v = Math.sqrt(GM_EARTH / r);
     S.ship = { x: r * Math.cos(a), y: r * Math.sin(a), vx: -v * Math.sin(a), vy: v * Math.cos(a) };
     S.state = 'coast'; orientRocket(S.ship.vx, S.ship.vy);
+  } else if (L.kind === 'deflect') {          // l'astéroïde arrive déjà : on le pousse en route
+    S.ship = asteroidStart(); S.state = 'coast'; W.age = 0;
+    if (W.astMesh) W.astMesh.visible = true;
   } else {
     const p = padPose(); S.ship = { x: p.x, y: p.y, vx: 0, vy: 0 };
     S.state = 'idle'; orientRocket(p.dx, p.dy);
   }
   if (L.kind === 'chase') W.stA = L.start.a + L.lead;
   if (L.kind === 'fuel') setTankLevel(+$('#power').value / 100);
+  if (L.kind === 'stage') {
+    S.st = { a1: L.f1, a2: L.f2, att: true, dropT: null, emptyT: null, dropFuel: 0 };
+    rocket.tank.visible = true; setTankLevel(1); rocket.tankMat.color.setHex(0xff9a3a); updateStageGauges();
+  }
   rocket.group.position.copy(P3(S.ship.x, S.ship.y));
 }
 
@@ -401,14 +460,15 @@ function buildLevel(i) {
   S.state = 'idle'; S.attempts = 0; S.fails = 0; S.simT = 0; S.world = {}; S.chk = {}; S.booms.forEach(b => scene.remove(b)); S.booms = [];
   $('#ticks').innerHTML = '';
   rocket.cargo.visible = L.mass > 1;
-  const sc = { sling: 2.2, moon: 1.4, orbit: 1.15, reentry: 1.1, chase: 1.15, hohmann: 1.3, lander: 2.4, mars: 1.4, track: 0.9, binary: 1.7, free: 1.3, balance: 1.3 }[L.kind] || 1.35;
+  const sc = { sling: 2.2, moon: 1.4, orbit: 1.15, reentry: 1.1, chase: 1.15, hohmann: 1.3, lander: 2.4, mars: 1.4, track: 0.9, binary: 1.7, free: 1.3, balance: 1.3, skip: 1.1, geo: 1.3, deflect: 1.6 }[L.kind] || 1.35;
   rocket.group.scale.setScalar(sc);
-  rocket.tank.visible = L.kind === 'fuel';
+  rocket.tank.visible = L.kind === 'fuel' || L.kind === 'stage';
+  rocket.tank.scale.setScalar(L.kind === 'stage' ? 1.7 : 1); rocket.tankMat.color.setHex(0xff9a3a);
   S.curve = null; S.ghostCurves = []; S.log = [];
 
-  if (!['sling', 'lander', 'mars', 'fuel', 'crew', 'track', 'binary'].includes(L.kind)) addEarth(); else earthMesh = null;
+  if (!['sling', 'lander', 'mars', 'fuel', 'crew', 'track', 'binary', 'stage', 'geo'].includes(L.kind)) addEarth(); else earthMesh = null;
 
-  if (L.kind === 'fuel' || L.kind === 'crew') {      // base lunaire
+  if (L.kind === 'fuel' || L.kind === 'crew' || L.kind === 'stage') {      // base lunaire
     const moon = new THREE.Mesh(new THREE.SphereGeometry(R_EARTH, 48, 32), new THREE.MeshPhongMaterial({ map: TEX.moon() }));
     levelGroup.add(moon); earthMesh = moon;
     const dome = new THREE.Mesh(new THREE.SphereGeometry(0.28, 16, 10, 0, TAU, 0, Math.PI / 2), new THREE.MeshPhongMaterial({ color: 0xcfd6e6 }));
@@ -529,7 +589,7 @@ function buildLevel(i) {
   }
 
   if (L.kind === 'sling') {
-    const W = S.world; W.gx = -22; W.gy = 8; W.gu = 3; W.target = { x: 24, y: 26, r: 4.5 };
+    const W = S.world; W.gx = -22; W.gy = 8; W.gu = 3; W.target = L.target || { x: 24, y: 26, r: 4.5 };
     const giant = new THREE.Mesh(new THREE.SphereGeometry(1.0, 32, 20), new THREE.MeshPhongMaterial({ map: TEX.giant() }));
     const ringM = new THREE.Mesh(new THREE.RingGeometry(1.35, 2.0, 48), new THREE.MeshBasicMaterial({ color: 0xd9c18e, transparent: true, opacity: .5, side: THREE.DoubleSide }));
     ringM.rotation.x = -1.2; giant.add(ringM); giant.add(sprite(GLOW_FIRE, 4.5, .25));
@@ -550,7 +610,7 @@ function buildLevel(i) {
     const zone = new THREE.Mesh(new THREE.CircleGeometry(T.r, 48), new THREE.MeshBasicMaterial({ color: 0x46e07c, transparent: true, opacity: .16, depthWrite: false }));
     zone.position.copy(P3(T.x, T.y, -0.02)); zone.rotation.x = -Math.PI / 2; levelGroup.add(zone);
     levelGroup.add(circleLine(T.r, 0x6bff9e, .6, T.x, T.y));
-    addLabel('Station lointaine', '#7dffaa', () => P3(T.x, T.y + T.r + 0.5));
+    addLabel(L.brake ? 'Station' : 'Station lointaine', '#7dffaa', () => P3(T.x, T.y + T.r + 0.5));
     addLabel('Planète géante', '#ffd09a', () => P3(W.gx, W.gy + 2.4));
     addLabel('Départ', '#d8d8d8', () => P3(0, -2.6));
   }
@@ -596,6 +656,48 @@ function buildLevel(i) {
     W.twin = null;
   }
 
+  if (L.kind === 'skip') {                        // la couche d'air autour de la Terre
+    const air = new THREE.Mesh(new THREE.RingGeometry(R_EARTH, L.atm, 96), new THREE.MeshBasicMaterial({ color: 0x5aa8ff, transparent: true, opacity: .18, side: THREE.DoubleSide, depthWrite: false }));
+    air.rotation.x = -Math.PI / 2; air.position.y = -0.02; levelGroup.add(air);
+    levelGroup.add(circleLine(L.atm, 0x8fc8ff, .55, 0, 0, true));
+    const arr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 2.6, 0xffd36b, 0.5, 0.32);
+    arr.position.y = 0.05; levelGroup.add(arr); S.world.aimArrow = arr;
+    addLabel("l'air", '#8fc8ff', () => P3(0.6, -L.atm - 0.45));
+    addLabel('Capsule', '#ffd36b', () => S.state === 'idle' ? P3(S.ship.x, S.ship.y + 1.0) : null);
+  }
+
+  if (L.kind === 'geo') {                         // Terre sans inclinaison, ville sur l'équateur
+    const W = S.world; W.cityA = 0.6;
+    const e = new THREE.Mesh(new THREE.SphereGeometry(R_EARTH, 48, 32), earthMat); levelGroup.add(e); W.geoEarth = e;
+    levelGroup.add(sprite(GLOW_BLUE, R_EARTH * 3.1, .5));
+    const city = new THREE.Mesh(new THREE.OctahedronGeometry(0.2), new THREE.MeshBasicMaterial({ color: 0xffd34a }));
+    city.position.set(R_EARTH + 0.08, 0.05, 0); e.add(city); W.city = city;
+    // la ligne « au-dessus de la ville » qui tourne avec la Terre
+    const ln = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(R_EARTH, 0.03, 0), new THREE.Vector3(12, 0.03, 0)]),
+      new THREE.LineDashedMaterial({ color: 0xffd34a, dashSize: .45, gapSize: .35, transparent: true, opacity: .55 }));
+    ln.computeLineDistances(); e.add(ln);
+    const ring = circleLine(1, 0x6fe3ff, .5, 0, 0, true); levelGroup.add(ring); W.geoRing = ring;
+    addLabel('Terre', '#9fd0ff', () => P3(0, -R_EARTH - 0.6));
+    addLabel('ville ★', '#ffd34a', () => city.getWorldPosition(new THREE.Vector3()).add(new THREE.Vector3(0, 0.4, 0)));
+    addLabel('au-dessus de la ville', '#e8cf7a', () => P3(9.5 * Math.cos(W.cityA), 9.5 * Math.sin(W.cityA), 0.2));
+  }
+
+  if (L.kind === 'deflect') {
+    const W = S.world, a = asteroidStart();
+    const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.75, 1), new THREE.MeshPhongMaterial({ color: 0x8a7f74, flatShading: true }));
+    rock.scale.set(1, 0.8, 1.15); levelGroup.add(rock); W.astMesh = rock;
+    // trajet prévu sans poussée
+    const path = new THREE.Line(new THREE.BufferGeometry().setFromPoints([P3(a.x, a.y), P3(0, 0)]),
+      new THREE.LineDashedMaterial({ color: 0xff7a7a, dashSize: .7, gapSize: .5, transparent: true, opacity: .45 }));
+    path.computeLineDistances(); levelGroup.add(path);
+    addLabel('Astéroïde', '#d8c8b8', () => !S.dead ? P3(S.ship.x, S.ship.y + 1.4) : null);
+    addLabel('trajet prévu', '#ff9a9a', () => P3(a.x * 0.55, a.y * 0.55 + 1.2));
+    // temps qu'il mettrait à toucher la Terre sans poussée
+    let x = a.x, y = a.y, vx = a.vx, vy = a.vy, t = 0;
+    while (Math.hypot(x, y) > R_EARTH && t < 60) { const r = Math.hypot(x, y), k = GM_EARTH / (r * r * r); vx -= k * x * H; vy -= k * y * H; x += vx * H; y += vy * H; t += H; }
+    W.T0 = t; W.age = 0;
+  }
+
   resetShip();
   resetCamera();
   $('#levelName').textContent = `${L.icon}  ${tr('Niveau')} ${i + 1} — ${lt(L, 'title')}`;
@@ -611,10 +713,11 @@ function buildLevel(i) {
   $('#powerTitle').textContent = s1 ? s1.title : tr(push ? '↔ Coup de moteur' : '🔥 Puissance');
   $('#endL').textContent = s1 ? s1.l : tr(push ? '⬅ freiner' : 'doux');
   $('#endR').textContent = s1 ? s1.r : tr(push ? 'accélérer ➡' : 'très fort');
-  $('#power').value = L.s1 ? L.s1.def : push ? 50 : 40;
+  $('#power').value = L.s1 ? L.s1.def : L.def != null ? L.def : push ? 50 : 40;   // jamais déjà sur la bonne réponse
   $('#power2Box').classList.toggle('hidden', !L.s2);
   if (s2) { $('#power2Title').textContent = s2.title; $('#end2L').textContent = s2.l; $('#end2R').textContent = s2.r; $('#power2').value = L.s2.def; }
   $('#crewBox').classList.toggle('hidden', L.kind !== 'crew');
+  $('#stageBox').classList.toggle('hidden', L.kind !== 'stage');
   $('#crewSafe').style.width = L.gLimit ? (100 * (L.gLimit - 2.0) / 6) + '%' : '0';
   updatePowerWord();
   document.body.classList.toggle('hasGraph', !!L.graph);
@@ -673,15 +776,21 @@ function updateCrew() {
 function launch() {
   const L = S.L;
   if (L.kind === 'hohmann' && S.state === 'flying' && S.chk.burns === 1) return burn2();
+  if (L.kind === 'stage' && S.state === 'flying' && S.st.att) return dropStage();
   if (S.state === 'flying' || S.state === 'success') return;
-  if (S.state === 'ended') { if (L.start) return; resetShip(); }
+  if (S.state === 'ended') { if (movingStart(L)) return; resetShip(); }
   let burnDv = 0;
-  if (L.start) {                        // coup de moteur en orbite, dans le sens du mouvement
+  if (L.kind === 'deflect') {           // poussée sur le côté de l'astéroïde
+    const s = S.ship, v = Math.hypot(s.vx, s.vy), P = +$('#power').value, dv = Math.max(0.02, P / 100) * L.kf;
+    S.lastPower = P;
+    const nx = -s.vy / v, ny = s.vx / v;
+    s.vx += nx * dv; s.vy += ny * dv; S.pushN = { x: nx, y: ny };
+  } else if (L.start) {                        // coup de moteur en orbite, dans le sens du mouvement
     if (L.kind === 'reentry') burnDv = Math.hypot(S.ship.vx, S.ship.vy) * (L.brake - 1);
     else if (L.kind === 'chase') { const P = +$('#power').value; S.lastPower = P; burnDv = (P - 50) / 50 * 0.8; }
     else if (L.kind === 'hohmann') burnDv = L.dv1;
     applyBurn(burnDv);
-  } else if (L.kind === 'lander' || L.kind === 'fuel' || L.kind === 'crew' || L.kind === 'track' || L.kind === 'balance') {
+  } else if (L.kind === 'lander' || L.kind === 'fuel' || L.kind === 'crew' || L.kind === 'track' || L.kind === 'balance' || L.kind === 'stage') {
     S.ship.vx = S.ship.vy = 0;
     S.lastPower = +$('#power').value;
     if (L.kind === 'fuel') { S.fuelLeft = S.lastPower / 100 * L.fmax; S.fuel0 = S.fuelLeft; }
@@ -693,6 +802,8 @@ function launch() {
     if (L.kind === 'moon') v = 5.40;
     else if (L.kind === 'sling') v = 3;
     else if (L.kind === 'mars') v = S.world.vT;
+    else if (L.kind === 'geo') { S.lastPower = +$('#power').value; v = Math.sqrt(GM_EARTH / geoR()); }
+    else if (L.kind === 'skip') { S.lastPower = +$('#power').value; v = 1; }
     else { const P = +$('#power').value; S.lastPower = P; v = L.vRange ? L.vRange[0] + P / 100 * (L.vRange[1] - L.vRange[0]) : P * KPOW / (L.mass || 1); }
     S.ship.vx = p.dx * v; S.ship.vy = p.dy * v;
   }
@@ -708,7 +819,11 @@ function launch() {
   S.trail = new Trail(0x6fe3ff); ghostGroup.add(S.trail.line); S.trail.push(S.ship.x, S.ship.y);
   S.state = 'flying'; S.flightT = 0; S.stepCount = 0; S.flameT = 0.45; S.attempts++;
   S.chk = { apex: false, swept: 0, lastAng: Math.atan2(S.ship.y, S.ship.x), rmin: 1e9, rmax: 0, minD: 1e9, ahead: false, dv: burnDv, burns: 1 };
-  if (L.start) addBurnMark(S.ship.x, S.ship.y);
+  if (movingStart(L)) addBurnMark(S.ship.x, S.ship.y);
+  if (L.kind === 'skip') { S.chk.rp = skipStart().rp; S.chk.peak = 0; S.chk.inAtm = false; }
+  if (L.kind === 'stage') S.flameT = 0;
+  if (L.kind === 'deflect') S.chk.moment = asteroidMoment();
+  if (L.kind === 'geo') S.chk.drift = 0;
   if (L.kind === 'lander') S.flameT = 0;
   if (L.kind === 'moon') S.chk.launchMoonA = S.world.moonA;
   if (L.kind === 'mars') { const W = S.world; S.chk.delta = Math.atan2(Math.sin(W.mA - W.eA), Math.cos(W.mA - W.eA)); }
@@ -738,11 +853,39 @@ function thrustAcc(h) {
     return a / r;
   }
   if (L.kind === 'crew' && S.flightT < S.burnT) return S.burnA / r;
+  if (L.kind === 'stage') {                 // un seul moteur : d'abord le grand réservoir, puis le petit
+    const st = S.st; let tank = null;
+    if (st.att && st.a1 > 0) tank = 'a1'; else if (st.a2 > 0) tank = 'a2';
+    if (!tank) return 0;
+    const m = L.m0 + st.a2 + (st.att ? L.ms + st.a1 : 0);
+    st[tank] = Math.max(0, st[tank] - L.q * h);
+    if (tank === 'a1' && st.a1 === 0 && st.emptyT == null) { st.emptyT = S.flightT; rocket.tankMat.color.setHex(0x777a85); }
+    return L.F / m / r;
+  }
   return 0;
+}
+// on lâche le grand réservoir : il retombe tout seul
+function dropStage() {
+  const st = S.st, s = S.ship; st.att = false; st.dropT = S.flightT; st.dropFuel = st.a1 / S.L.f1;
+  rocket.tank.visible = false;
+  const g = rocket.tank.clone(); g.visible = true;
+  const wrap = new THREE.Group(); wrap.add(g); wrap.scale.copy(rocket.group.scale); wrap.position.copy(rocket.group.position);
+  wrap.quaternion.copy(rocket.group.quaternion); g.position.copy(rocket.tank.position); g.scale.copy(rocket.tank.scale);
+  ghostGroup.add(wrap); wrap.userData.oneShot = true;
+  S.world.debris = { x: s.x, y: s.y, vx: s.vx * 0.9, vy: s.vy * 0.9, mesh: wrap, spin: 0 };
+  updateLaunchBtn();
+}
+function updateStageGauges() {
+  const L = S.L, st = S.st; if (!st) return;
+  const t1 = $('#gTank1'), t2 = $('#gTank2');
+  t1.style.width = (st.att ? st.a1 / L.f1 * 100 : 0) + '%'; t1.style.background = '#ff9a3a';
+  t1.parentElement.style.opacity = st.att ? 1 : .35;
+  t2.style.width = (st.a2 / L.f2 * 100) + '%'; t2.style.background = '#6fe3ff';
 }
 function burning() {
   const L = S.L;
-  return S.state === 'flying' && ((L.kind === 'fuel' && S.fuelLeft > 0 && !S.chk.heavy) || (L.kind === 'crew' && S.flightT < S.burnT));
+  return S.state === 'flying' && ((L.kind === 'fuel' && S.fuelLeft > 0 && !S.chk.heavy) || (L.kind === 'crew' && S.flightT < S.burnT)
+    || (L.kind === 'stage' && ((S.st.att && S.st.a1 > 0) || S.st.a2 > 0)));
 }
 
 function addGhostBody(x, y, r, color, text) {
@@ -817,6 +960,14 @@ function worldStep(h) {
   if (L.kind === 'mars') { W.eA += W.eW * h; W.mA += W.mW * h; }
   if (L.kind === 'binary') W.binA += W.binW * h;
   if (L.perturb) { W.px += L.perturb.u * h; if (W.px < L.perturb.xmin) W.px = L.perturb.xmax; }
+  if (L.kind === 'geo') W.cityA += L.wE * h;
+  if (L.kind === 'deflect' && S.state === 'coast') W.age += h;
+  const d = W.debris;                     // réservoir largué qui retombe
+  if (d && d.mesh.visible) {
+    const r = Math.hypot(d.x, d.y), k = L.gm / (r * r * r);
+    d.vx -= k * d.x * h; d.vy -= k * d.y * h; d.x += d.vx * h; d.y += d.vy * h; d.spin += h * 3;
+    if (r < R_EARTH) d.mesh.visible = false;
+  }
 }
 
 /* vol libre sans vérification (avant le coup de moteur, ou après la fin de l'essai) */
@@ -825,7 +976,11 @@ function coastStep(h, record) {
   const s = S.ship; let ax = 0, ay = 0;
   for (const b of bodies()) {
     const dx = b.x - s.x, dy = b.y - s.y, d2 = dx * dx + dy * dy, d = Math.sqrt(d2);
-    if (d < b.r) { boom(s.x, s.y, 1.4); return; }
+    if (d < b.r) {
+      boom(s.x, s.y, 1.4);
+      if (S.L.kind === 'deflect' && S.state === 'coast') { S.world.astMesh.visible = false; endAttempt(false, "Boum ! Tu n'as pas poussé l'astéroïde : il a foncé tout droit sur la Terre. Appuie sur <b>POUSSER</b> pendant qu'il arrive !"); }
+      return;
+    }
     const a = b.gm / (d2 * d); ax += a * dx; ay += a * dy;
   }
   s.vx += ax * h; s.vy += ay * h; s.x += s.vx * h; s.y += s.vy * h;
@@ -865,6 +1020,11 @@ function shipStep(h) {
     return;
   }
   const k = thrustAcc(h); ax += k * s.x; ay += k * s.y;
+  if (S.L.kind === 'skip') {
+    const L = S.L, r = Math.hypot(s.x, s.y), v = Math.hypot(s.vx, s.vy);
+    S.chk.drag = 0;
+    if (r < L.atm) { const dr = L.kd * Math.exp(-(r - R_EARTH) / L.Hs) * v * v; S.chk.drag = dr; S.chk.inAtm = true; S.chk.peak = Math.max(S.chk.peak, dr); ax -= dr * s.vx / v; ay -= dr * s.vy / v; }
+  }
   const B = bodies();
   for (const b of B) {
     const dx = b.x - s.x, dy = b.y - s.y, d2 = dx * dx + dy * dy, d = Math.sqrt(d2);
@@ -895,7 +1055,19 @@ function collide(b) {
     return endAttempt(false, near + tr(d < 0 ? "<b>Trop tôt !</b> Tu es tombé <b>avant</b> la zone verte. Freine un peu plus tard."
                                              : "<b>Trop tard !</b> Tu es tombé <b>après</b> la zone verte. Freine un peu plus tôt."), near ? 'warn' : 'bad');
   }
+  if (L.kind === 'skip') {                       // arrivée au sol : les parachutes ont fait le reste
+    s.vx = s.vy = 0; rocket.heat.visible = false; S.stars = 1; addTick(S.lastPower, '#5ee08a');
+    return endAttempt(true, "🪂 Bienvenue sur Terre ! La capsule a freiné dans l'air sans trop chauffer, et les parachutes se sont ouverts.");
+  }
   boom(s.x, s.y, L.kind === 'sling' ? 3 : 1.4);
+  if (L.kind === 'deflect') {
+    S.world.astMesh.visible = false;
+    addTick(0, '#ff8a7a');
+    return endAttempt(false, S.chk.moment > 84
+      ? "Boum ! Tu as poussé <b>trop tard</b> : même avec une grosse poussée, l'astéroïde n'avait plus le temps de s'écarter. Pousse <b>plus tôt</b> !"
+      : "Boum ! La poussée n'était <b>pas assez forte</b> pour l'écarter de la Terre. Pousse un peu plus fort… ou encore plus tôt !");
+  }
+  if (L.kind === 'geo') return endAttempt(false, "Le satellite est tombé sur la Terre !");
   if (L.zone) {
     if (C.apexR == null) C.apexR = Math.hypot(s.x, s.y);
     if (C.apexR < R_EARTH + 0.6) return endAttempt(false, "Elle a à peine décollé ! Il faut <b>beaucoup plus</b> de puissance.");
@@ -914,7 +1086,7 @@ function collide(b) {
     return endAttempt(false, moonVerdict() + " Ta fusée est retombée sur Terre.");
   }
   if (L.kind === 'sling') {
-    if (b.id === 'giant') return endAttempt(false, "Trop près ! Tu t'es écrasé sur la planète géante. Décolle <b>un tout petit peu plus tard</b>.");
+    if (b.id === 'giant') return endAttempt(false, L.brake ? "Trop près ! Tu t'es écrasé sur la planète géante. Décolle <b>un peu plus tôt</b>." : "Trop près ! Tu t'es écrasé sur la planète géante. Décolle <b>un tout petit peu plus tard</b>.");
   }
   if (L.kind === 'chase') return endAttempt(false, "Beaucoup trop freiné : tu es descendu si bas que tu es retombé sur la Terre !");
   if (L.kind === 'binary') { C.fate = 'crash'; addTick(S.lastPower, '#ff8a7a'); return endAttempt(false, twinNote("Boum ! Ton vaisseau est tombé dans un des soleils.")); }
@@ -1024,10 +1196,19 @@ const CHECKS = {
     if (S.L.perturb) { const bl = B[1]; C.minBlue = Math.min(C.minBlue || 1e9, Math.hypot(s.x - bl.x, s.y - bl.y)); }
     if (Math.hypot(s.x - T.x, s.y - T.y) < T.r) {
       s.vx = s.vy = 0; S.stars = 1;
-      return endAttempt(true, "🪐 Catapulte réussie ! La planète t'a lancé jusqu'à la station.");
+      return endAttempt(true, S.L.brake ? "🛑 Freinage réussi ! En passant devant la planète, tu as ralenti : la station t'a attrapé."
+                                        : "🪐 Catapulte réussie ! La planète t'a lancé jusqu'à la station.");
     }
     if (s.y > 46 || s.x > 46 || s.x < -36 || s.y < -14 || S.flightT > 10) {
       let msg;
+      if (S.L.brake) {
+        if (C.minD > 7) return endAttempt(false, C.ahead ? "<b>Trop tôt !</b> La planète était encore loin : elle ne t'a presque pas tiré. Décolle plus tard."
+                                                         : "<b>Trop tard !</b> La planète était déjà passée : elle ne t'a presque pas tiré. Décolle plus tôt.");
+        if (!C.ahead) return endAttempt(false, "Tu es passé <b>derrière</b> la planète : elle t'a <b>accéléré</b> et emporté vers la droite ! Ici, il faut freiner. Décolle <b>plus tôt</b>.");
+        if (C.minD > 4.4) return endAttempt(false, "Bien, tu es passé <b>devant</b> la planète ! Mais trop loin : elle ne t'a pas assez freiné. Décolle <b>un peu plus tard</b>.", 'warn');
+        if (C.minD < 3.4) return endAttempt(false, "Bien, tu es passé <b>devant</b> ! Mais trop près : elle t'a tellement tiré que tu es reparti vers le bas. Décolle <b>un tout petit peu plus tôt</b>.", 'warn');
+        return endAttempt(false, "Presque ! Tu es passé devant la planète, mais tu as raté la station de peu. Essaie un moment très légèrement différent.", 'warn');
+      }
       if (C.minBlue < 3.5 && C.minD < 3) return endAttempt(false, "La géante t'a bien lancé… mais la <b>planète bleue</b> est passée trop près et son attraction t'a <b>dévié</b> ! Choisis un passage où elle est loin.", 'warn', 0x6fa8ff);
       if (C.minD > 7) msg = "<b>Trop tard !</b> La planète était déjà loin : elle ne t'a presque pas tiré. Décolle plus tôt.";
       else if (C.ahead) msg = "<b>Trop tôt !</b> Tu es passé <b>devant</b> la planète : elle t'a freiné et tiré en arrière. Décolle plus tard.";
@@ -1119,6 +1300,68 @@ CHECKS.free = (B) => {
   }
   if (r > 24) { addTick(S.lastPower, '#ffb347'); return endAttempt(false, "Trop fort : la fusée est passée loin de la Lune, qui ne l'a pas assez tirée pour la faire revenir. Elle file dans l'espace…", 'warn'); }
   if (S.flightT > 22) { addTick(S.lastPower, '#c78bff'); return endAttempt(false, "La fusée tourne entre la Terre et la Lune sans revenir… Quand deux astres tirent en même temps, les trajets peuvent devenir <b>très compliqués</b> ! Essaie un tout petit peu moins fort.", 'warn', 0xc78bff); }
+};
+
+/* ---- ricochet : traverser l'air sans rebondir ni trop chauffer ---- */
+CHECKS.skip = () => {
+  const s = S.ship, C = S.chk, L = S.L, r = Math.hypot(s.x, s.y), vr = (s.x * s.vx + s.y * s.vy) / r;
+  if (C.drag > L.heatMax) {
+    rocket.heat.visible = false; boom(s.x, s.y, 1.6); addTick(S.lastPower, '#ffb347');
+    return endAttempt(false, (C.rp > 2.02 ? tr('Presque ! ') : '') + tr("<b>Trop raide !</b> La capsule a plongé trop vite dans l'air : elle a freiné trop fort d'un coup et <b>trop chauffé</b> 🔥. Rends l'angle un peu plus <b>à plat</b>."), C.rp > 2.02 ? 'warn' : 'bad', 0xffb347);
+  }
+  if (C.inAtm && r > L.atm + 0.3 && vr > 0) {
+    addTick(S.lastPower, '#c78bff');
+    return endAttempt(false, (C.rp < 2.56 ? tr('Presque ! ') : '') + tr("<b>Ricochet !</b> La capsule est arrivée <b>trop à plat</b> : elle a rebondi sur l'air et repart dans l'espace. Rends l'angle un peu plus <b>raide</b>."), C.rp < 2.56 ? 'warn' : 'bad', 0xc78bff);
+  }
+  if (!C.inAtm && (S.flightT > 12 || r > 14)) {
+    addTick(S.lastPower, '#c78bff');
+    return endAttempt(false, "La capsule n'a même pas touché l'air : elle est passée à côté de la Terre ! Rends l'angle plus <b>raide</b>.", 'bad', 0xc78bff);
+  }
+};
+
+/* ---- satellite immobile : rester au-dessus de la ville pendant un demi-tour de la Terre ---- */
+CHECKS.geo = () => {
+  const s = S.ship, C = S.chk, L = S.L, W = S.world;
+  const a = Math.atan2(s.y, s.x), d = Math.atan2(Math.sin(a - W.cityA), Math.cos(a - W.cityA));
+  if (Math.abs(d) > L.tol) {
+    const near = S.flightT > Math.PI / L.wE * 0.55;
+    addTick(S.lastPower, d > 0 ? '#ff8a7a' : '#ffb347');
+    return endAttempt(false, (near ? tr('Presque ! ') : '') + tr(d > 0
+      ? "Le satellite tourne <b>plus vite</b> que la Terre : il part <b>devant</b> la ville. Place-le <b>plus haut</b>."
+      : "La Terre tourne <b>plus vite</b> que le satellite : la ville le <b>dépasse</b>. Place-le <b>plus bas</b>."), near ? 'warn' : 'bad');
+  }
+  if (S.flightT >= Math.PI / L.wE) {
+    addTick(S.lastPower, '#5ee08a'); S.stars = 1;
+    return endAttempt(true, "📡 Parfait ! Le satellite tourne exactement aussi vite que la Terre : il reste au-dessus de la ville.");
+  }
+};
+
+/* ---- fusée à étages : le sommet du vol dit si on a bien largué ---- */
+CHECKS.stage = () => {
+  const s = S.ship, C = S.chk, L = S.L, st = S.st, r = Math.hypot(s.x, s.y), vr = (s.x * s.vx + s.y * s.vy) / r;
+  if (C.apex || vr > 0 || burning()) return;
+  C.apex = true; C.apexR = r;
+  const [a, b] = L.zone, ok = r >= a && r <= b;
+  const m = new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 8), new THREE.MeshBasicMaterial({ color: ok ? 0x5ee08a : 0xff8a7a }));
+  m.position.copy(P3(s.x, s.y, 0.02)); ghostGroup.add(m);
+  if (ok) { s.vx = s.vy = 0; S.stars = 1; return endAttempt(true, "🧨 Bien joué ! Sans le réservoir vide, la fusée était plus légère : elle est montée jusqu'à la zone verte."); }
+  if (r > b) return endAttempt(false, "Trop haut ! Tu as dépassé la zone verte.", 'warn', 0xffb347);
+  if (st.att) return endAttempt(false, "Tu n'as pas largué le grand réservoir : la fusée a traîné ce <b>poids mort</b> jusqu'au bout. Appuie sur <b>LARGUER</b> pendant le vol !");
+  if (st.dropFuel > 0.02) return endAttempt(false, (st.dropFuel < 0.25 ? tr('Presque ! ') : '') + tr("<b>Trop tôt !</b> Il restait du carburant dans le grand réservoir quand tu l'as largué : tu as jeté de quoi pousser ! Attends qu'il soit <b>vide</b>."), st.dropFuel < 0.25 ? 'warn' : 'bad');
+  const late = st.dropT - st.emptyT;
+  return endAttempt(false, (late < 0.35 ? tr('Presque ! ') : '') + tr("<b>Trop tard !</b> Le grand réservoir était vide depuis un moment : la fusée a traîné ce <b>poids mort</b> pour rien. Largue-le <b>dès qu'il est vide</b>."), late < 0.35 ? 'warn' : 'bad');
+};
+
+/* ---- astéroïde : une fois poussé, passe-t-il à côté de la Terre ? ---- */
+CHECKS.deflect = () => {
+  const s = S.ship, C = S.chk, r = Math.hypot(s.x, s.y), vr = (s.x * s.vx + s.y * s.vy) / r;
+  C.rmin = Math.min(C.rmin, r);
+  if (vr > 0 && r > C.rmin + 1.5) {
+    const P = S.lastPower; S.stars = P <= 35 ? 3 : P <= 60 ? 2 : 1;
+    addTick(0, '#5ee08a');
+    return endAttempt(true, S.stars === 3 ? "🌍 Sauvé ! Une <b>toute petite</b> poussée a suffi : l'astéroïde passe à côté de la Terre."
+                                          : "🌍 Sauvé ! L'astéroïde passe à côté de la Terre.");
+  }
 };
 
 /* ---- deux soleils : faire un tour complet du système ---- */
@@ -1234,11 +1477,12 @@ const GRAPH = (() => {
   function setup() {
     const L = S.L; cursor = null; dirty = true;
     if (!L.graph) return;
-    const T = { height: '📈 Le graphique du voyage', map: '🗺️ La carte : où passe le satellite ?', log: '📒 Le carnet de bord' }[L.graph];
+    const T = { height: '📈 Le graphique du voyage', map: '🗺️ La carte : où passe le satellite ?', log: '📒 Le carnet de bord', push: '📒 Le carnet de bord' }[L.graph];
     const G = {
       height: "Le trait monte quand la fusée s'éloigne de la Terre, et descend quand elle se rapproche. Les <b>perles de couleur</b> marquent les mêmes moments dans l'espace et sur le graphique.",
       map: "La Terre « déroulée » à plat. Le trait montre les endroits survolés par le satellite. <b>En haut</b> = vers le pôle Nord, <b>en bas</b> = vers le pôle Sud.",
       log: "Chaque point est un essai : <b style='color:#5ee08a'>vert</b> = réussi, <b style='color:#ff8a7a'>rouge</b> = trop bas, <b style='color:#ffb347'>orange</b> = trop haut, <b style='color:#c78bff'>violet</b> = astronautes écrasés. Le petit cercle blanc = tes réglages actuels.",
+      push: "Chaque point est un essai : <b style='color:#5ee08a'>vert</b> = Terre sauvée, <b style='color:#ff8a7a'>rouge</b> = astéroïde tombé. Le cercle blanc avance pendant que l'astéroïde approche : c'est <b>maintenant</b>, avec la force choisie.",
     }[L.graph];
     $('#graphTitle').textContent = tr(T); $('#graphLegend').innerHTML = tr(G);
     draw();
@@ -1335,6 +1579,12 @@ const GRAPH = (() => {
   function drawLog() {
     const L = S.L;
     const XA = a => P.l + a / 100 * pw(), YB = b => Ht - P.b - b / 100 * ph();
+    if (L.graph === 'push') {
+      axes('force ↑', tr('tôt'), tr('tard →'));
+      S.log.forEach(p => { g.fillStyle = p.color; g.beginPath(); g.arc(XA(p.a), YB(p.b), 6, 0, TAU); g.fill(); });
+      if (cursor) { g.strokeStyle = '#fff'; g.lineWidth = 2.5; g.beginPath(); g.arc(XA(cursor.a), YB(cursor.b), 9, 0, TAU); g.stroke(); }
+      return;
+    }
     const lim = (L.gLimit - 2.0) / 0.06;           // position du curseur « force » à la limite
     g.fillStyle = 'rgba(255,80,80,.16)'; g.fillRect(XA(lim), P.t, XA(100) - XA(lim), ph());
     g.strokeStyle = 'rgba(255,120,120,.7)'; g.setLineDash([6, 5]); g.lineWidth = 1.5;
@@ -1351,7 +1601,7 @@ const GRAPH = (() => {
     g.clearRect(0, 0, Wd, Ht); g.fillStyle = '#0b1130'; g.fillRect(0, 0, Wd, Ht);
     if (L.graph === 'height') drawHeight();
     if (L.graph === 'map') drawMap();
-    if (L.graph === 'log') drawLog();
+    if (L.graph === 'log' || L.graph === 'push') drawLog();
   }
   return { setup, begin, sample, sampleTrack, setCursor, endCurve, frame, draw, logPoint(a, b, color) { S.log.push({ a, b, color }); if (S.log.length > 40) S.log.shift(); dirty = true; } };
 })();
@@ -1359,6 +1609,7 @@ const GRAPH = (() => {
 /* ------------------------------------------------------------------ interface */
 function addTick(p, color) {
   if (S.L.graph === 'log') { GRAPH.logPoint(S.lastPower, S.lastPower2, color); return; }
+  if (S.L.graph === 'push') { GRAPH.logPoint(S.chk.moment, S.lastPower, color); return; }
   const box = $('#ticks'); box.querySelectorAll('.last').forEach(e => e.classList.remove('last'));
   const t = document.createElement('span'); t.style.left = p + '%'; t.style.background = color; t.style.color = color; t.className = 'last';
   box.appendChild(t); while (box.children.length > 8) box.firstChild.remove();
@@ -1380,7 +1631,7 @@ function setTankLevel(f) { rocket.tank.children.forEach(t => { t.scale.y = Math.
 function updateAttempts() { $('#attempts').textContent = `${tr('Essai n°')} ${S.attempts + (S.state === 'flying' || S.state === 'success' ? 0 : 1)}`; }
 function updateLaunchBtn() {
   const L = S.L, b = $('#btnLaunch');
-  let dis = S.state === 'flying' || S.state === 'success' || (S.state === 'ended' && !!L.start);
+  let dis = S.state === 'flying' || S.state === 'success' || (S.state === 'ended' && movingStart(L));
   let txt = L.btn || '🚀 LANCER';
   if (L.kind === 'hohmann') {
     if (S.state === 'flying' && S.chk.burns === 1) { dis = false; txt = '🔥 ALLUMER (2e coup)'; } else txt = '🔥 ALLUMER (1er coup)';
@@ -1388,6 +1639,7 @@ function updateLaunchBtn() {
   if (L.kind === 'lander') {
     if (S.state === 'flying') { dis = false; txt = '🔥 MOTEUR (appuie)'; } else txt = '▶ DESCENDRE';
   }
+  if (L.kind === 'stage' && S.state === 'flying' && S.st.att) { dis = false; txt = '✂️ LARGUER'; }
   b.disabled = dis; b.textContent = tr(txt);
 }
 let toastTimer = 0;
@@ -1410,7 +1662,7 @@ $('#toast').addEventListener('click', fadeToast);
 function showWin() {
   const L = S.L;
   $('#winStars').textContent = L.stars ? '★'.repeat(S.stars) + '☆'.repeat(3 - S.stars) : '';
-  const more = tr({ orbit: ' — sauras-tu faire une orbite toute ronde ?', hohmann: ' — sauras-tu tourner encore plus rond ?', lander: ' — sauras-tu te poser encore plus doucement ?' }[L.kind]);
+  const more = tr({ orbit: ' — sauras-tu faire une orbite toute ronde ?', hohmann: ' — sauras-tu tourner encore plus rond ?', lander: ' — sauras-tu te poser encore plus doucement ?', deflect: ' — sauras-tu le sauver avec une poussée encore plus petite ?' }[L.kind]);
   $('#winSub').textContent = (LANG === 'en' ? `Done in ${S.attempts} ${S.attempts > 1 ? 'tries' : 'try'}` : `Réussi en ${S.attempts} essai${S.attempts > 1 ? 's' : ''}`) + (L.stars && S.stars < 3 && more ? more : '');
   $('#winText').innerHTML = lt(L, 'discover');
   $('#btnNext').classList.toggle('hidden', S.li >= LEVELS.length - 1);
@@ -1505,9 +1757,9 @@ function frame(now) {
 function advance(dtReal) {
   clock += dtReal; const now = clock * 1000;
   const L = S.L;
-  let simDt = dtReal * L.speed * (S.slow ? 0.45 : 1);
+  let simDt = dtReal * (L.burnSpeed && burning() ? L.burnSpeed : L.speed) * (S.slow ? 0.45 : 1);
   const n = Math.ceil(simDt / H), h = simDt / n;
-  const docked = (S.state === 'success' && (L.kind === 'chase' || L.kind === 'mars'));
+  const docked = (S.state === 'success' && (L.kind === 'chase' || L.kind === 'mars' || L.kind === 'skip'));
   for (let i = 0; i < n; i++) {
     worldStep(h);
     if (L.kind === 'track') { trackStep(h); continue; }
@@ -1567,6 +1819,25 @@ function advance(dtReal) {
     });
   }
   if (earthMesh) earthMesh.rotation.y += dtReal * 0.12;
+  if (L.kind === 'skip') {
+    const show = S.state === 'idle', A = W.aimArrow; A.visible = show;
+    if (show) { const k = skipStart(); s.x = k.x; s.y = k.y; s.vx = k.vx; s.vy = k.vy; A.position.copy(P3(k.x, k.y, 0.05)); A.setDirection(new THREE.Vector3(k.vx, 0, -k.vy).normalize()); orientRocket(k.vx, k.vy); }
+  }
+  if (L.kind === 'geo') {
+    W.geoEarth.rotation.y = W.cityA;
+    const r = S.state === 'idle' ? geoR() : Math.hypot(s.x, s.y);
+    W.geoRing.scale.set(r, 1, r); W.geoRing.visible = S.state === 'idle';
+    if (S.state === 'idle') { const p = padPose(); s.x = p.x; s.y = p.y; orientRocket(p.dx, p.dy); }
+  }
+  if (L.kind === 'stage') {
+    updateStageGauges();
+    if (S.st.att) setTankLevel(Math.max(0.04, S.st.a1 / L.f1));
+    const d = W.debris; if (d) { d.mesh.position.copy(P3(d.x, d.y)); d.mesh.rotation.z = d.spin; }
+  }
+  if (L.kind === 'deflect') {
+    W.astMesh.position.copy(P3(s.x, s.y)); W.astMesh.rotation.x += dtReal * 0.7; W.astMesh.rotation.y += dtReal * 0.4;
+    if (S.state === 'coast') GRAPH.setCursor(asteroidMoment(), +$('#power').value);
+  }
 
   if (L.kind === 'track') trackDisplay();
   else {
@@ -1574,12 +1845,20 @@ function advance(dtReal) {
     const moving = S.state === 'flying' || S.state === 'coast' || (L.keepSim && (S.state === 'success' || S.state === 'ended'));
     if (L.kind !== 'lander' && moving && !(docked && L.kind === 'mars') && Math.hypot(s.vx, s.vy) > 0.05) orientRocket(s.vx, s.vy);
   }
+  if (L.kind === 'deflect') {             // la fusée est posée sur le flanc de l'astéroïde et pousse sur le côté
+    const v = Math.hypot(s.vx, s.vy) || 1, n = S.pushN && S.state !== 'coast' ? S.pushN : { x: -s.vy / v, y: s.vx / v };
+    rocket.group.position.copy(P3(s.x - n.x * 1.1, s.y - n.y * 1.1)); orientRocket(n.x, n.y);
+  }
   const shaking = S.state === 'flying' && S.chk.heavy;
   if (shaking) rocket.group.position.x += (Math.random() - .5) * 0.06;
   if (L.kind === 'fuel' && S.state === 'flying') setTankLevel(S.fuelLeft / L.fmax);
   S.flameT -= dtReal;
   rocket.flame.visible = (S.flameT > 0 && S.state === 'flying') || (isLanderFlying() && S.thrust && S.fuel > 0) || burning() || shaking;
-  if (L.kind !== 'reentry' || S.state !== 'flying') rocket.heat.visible = false;
+  if (L.kind === 'skip' && S.state === 'flying') {
+    const k = Math.min(1, (S.chk.drag || 0) / L.heatMax); rocket.heat.visible = k > 0.04;
+    rocket.heat.material.opacity = 0.3 + 0.7 * k; rocket.heat.scale.setScalar(0.6 + 1.6 * k);
+  } else if (L.kind !== 'reentry' || S.state !== 'flying') rocket.heat.visible = false;
+  if (L.kind !== 'skip') { rocket.heat.material.opacity = .85; rocket.heat.scale.setScalar(1.2); }
   if (rocket.flame.visible) rocket.flame.scale.set(1, 0.8 + Math.random() * 0.5, 1);
   if (S.trail) S.trail.flush();
   GRAPH.frame();

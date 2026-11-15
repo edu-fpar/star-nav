@@ -21,7 +21,7 @@ La mécanique des orbites, quand on la rencontre, c'est en général sous forme 
 
 ![Niveau 1 : trois essais — trop faible, trop fort, puis pile dans la zone verte](screenshots/jump-fr.png)
 
-## Les 20 niveaux
+## Les 25 niveaux
 
 Chaque titre ouvre directement le niveau.
 
@@ -78,6 +78,16 @@ Chaque titre ouvre directement le niveau.
 | 20 | [✨ Deux soleils](https://edu-fpar.github.io/star-nav/#niveau-20) | Le chaos : un vaisseau jumeau lancé 1 % plus vite finit tout autre part |
 
 ![Niveau 20 : le vaisseau et son jumeau violet partent presque ensemble, puis leurs chemins se séparent](screenshots/suns-fr.png)
+
+**Partie 7 — Missions spéciales**
+
+| # | Niveau | Ce que l'enfant découvre |
+|---|---|---|
+| 21 | [🏓 Le ricochet sur l'air](https://edu-fpar.github.io/star-nav/#niveau-21) | Trop à plat, la capsule rebondit sur l'air ; trop raide, elle brûle : il faut viser le couloir entre les deux |
+| 22 | [📡 Le satellite immobile](https://edu-fpar.github.io/star-nav/#niveau-22) | Plus un satellite est haut, plus son tour est long ; à la bonne hauteur, il tourne avec la Terre |
+| 23 | [🧨 La fusée à étages](https://edu-fpar.github.io/star-nav/#niveau-23) | Un réservoir vide est un poids mort : le larguer au bon moment fait monter plus haut |
+| 24 | [🛑 La catapulte à l'envers](https://edu-fpar.github.io/star-nav/#niveau-24) | Passer devant une planète freine : la même planète peut accélérer ou ralentir |
+| 25 | [☄️ Dévier l'astéroïde](https://edu-fpar.github.io/star-nav/#niveau-25) | Une petite poussée donnée tôt vaut mieux qu'une grosse donnée tard (comme la mission DART) |
 
 ## Commandes
 
