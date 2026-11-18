@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Star Nav">
 <meta property="og:title" content="Star Nav — pilote ta fusée avec la gravité">
-<meta property="og:description" content="Un jeu 3D pour les enfants : on essaie, on regarde, on ajuste. 25 niveaux pour comprendre les orbites sans calcul. Version anglaise incluse.">
+<meta property="og:description" content="Un jeu 3D pour les enfants : on essaie, on regarde, on ajuste. 31 niveaux pour comprendre les orbites sans calcul. Version anglaise incluse.">
 <meta property="og:url" content="https://edu-fpar.github.io/star-nav/">
 <meta property="og:image" content="https://edu-fpar.github.io/star-nav/screenshots/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -79,6 +79,22 @@
   <div id="stageBox" class="hidden">
     <div class="gauge"><span data-i>Grand réservoir</span><div class="bar"><i id="gTank1"></i></div></div>
     <div class="gauge"><span data-i>Petit réservoir</span><div class="bar"><i id="gTank2"></i></div></div>
+  </div>
+  <div id="calcBox" class="hidden">
+    <div class="gauge"><span data-i>Calculs de l'ordinateur</span><div class="bar"><i id="gCalc"></i></div></div>
+  </div>
+  <div id="shakeBox" class="hidden">
+    <div class="gauge"><span data-i>Tremblements du moteur</span><div class="bar"><i id="gShake"></i><em class="safe" style="width:50%"></em></div></div>
+  </div>
+  <div id="progBox" class="hidden">
+    <div class="progHead" data-i>Ton programme :</div>
+    <div id="progList"></div>
+    <div class="progBtns">
+      <button class="chip" data-op="F" data-i>⬆ Avancer</button>
+      <button class="chip" data-op="L" data-i>↰ Gauche</button>
+      <button class="chip" data-op="R" data-i>↱ Droite</button>
+      <button class="chip" data-op="X" data-i-title title="Effacer la dernière instruction">⌫</button>
+    </div>
   </div>
   <div class="row">
     <button id="btnSlow" class="chip toggle" data-icon="🐢" data-i data-i-title title="Ralenti">🐢 Ralenti</button>

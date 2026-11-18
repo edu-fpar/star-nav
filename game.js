@@ -186,6 +186,47 @@ const LEVELS = [
     s1: { title: '💪 Force de la poussée', l: 'toute petite', r: 'énorme', words: ['toute petite', 'petite', 'moyenne', 'grande', 'énorme'], def: 15 },
     hint: "💡 Plus tu pousses <b>tôt</b>, plus l'astéroïde a le temps de s'écarter. Pousse <b>dès le début</b>, puis cherche la plus petite force qui suffit.",
     discover: "Une toute petite poussée donnée <b>tôt</b> suffit à faire rater la Terre à un astéroïde : il a tout le temps de s'écarter, petit à petit. Plus on attend, plus il faut pousser fort… jusqu'à ce que ce soit impossible. Regarde ton carnet de bord : la limite <b>monte</b> vers la droite !<br><br>En 2022, la sonde <b>DART</b> de la NASA s'est écrasée exprès sur un petit astéroïde pour le pousser. Ça a marché : son chemin a changé. C'est pour ça qu'on surveille le ciel : repérer un astéroïde tôt, c'est pouvoir le dévier en douceur." },
+
+  /* ---------- partie 8 : les outils des ingénieurs ---------- */
+  { kind: 'vector', icon: '➕', title: 'Additionner les flèches', short: 'Une vitesse, c\'est une flèche', part: 'Partie 8 — Les outils des ingénieurs',
+    mission: "Ta fusée <b class=s>glisse déjà vers la droite</b> (flèche bleue). Choisis la <b>direction</b> du coup de moteur (flèche orange) pour rejoindre la <b class=g>station</b>, juste au-dessus.",
+    speed: 1.4, cam: { c: [1.5, 2.8], d: 25, el: 1.3 }, drift: 2, kick: 3, target: { x: 0, y: 10, r: 1.5 }, btn: '🔥 ALLUMER',
+    s1: { title: '🧭 Direction du coup de moteur', l: '➡ vers la droite', r: 'vers la gauche ⬅', words: ['vers la droite', 'en biais à droite', 'tout droit vers le haut', 'en biais à gauche', 'vers la gauche'], def: 50 },
+    hint: "💡 Le moteur ne remplace pas la glissade : il s'y <b>ajoute</b>. Pour monter tout droit, il faut aussi pousser un peu <b>contre</b> la glissade, donc en biais vers la gauche.",
+    discover: "Une vitesse, ce n'est pas seulement « vite » ou « lentement » : c'est une <b>flèche</b>, avec une longueur et une direction. Quand le moteur pousse, sa flèche s'<b>ajoute</b> à celle que la fusée avait déjà : on les met bout à bout, et la fusée part vers le bout de la dernière (la flèche verte).<br><br>Dans l'espace, rien n'arrête la glissade : pour monter tout droit, il fallait pousser en biais, un peu contre elle. Ces flèches s'appellent des <b>vecteurs</b>. Les ingénieurs, les pilotes et les créateurs de jeux vidéo s'en servent tout le temps." },
+  { kind: 'euler', icon: '🧮', title: "L'ordinateur de bord", short: 'Calculer pas à pas', stars: true,
+    mission: "L'ordinateur calcule le trajet du satellite <b>par sauts</b> : à chaque saut, il avance <b>tout droit</b>, puis corrige sa direction. Choisis la <b>taille des sauts</b> pour que le trajet calculé reste dans la <b class=g>bande verte</b> pendant un tour… sans dépasser le nombre de <b class=o>calculs</b> que l'ordinateur peut faire.",
+    speed: 1.2, cam: { c: [0, -1.8], d: 24, el: 1.25 }, r0: 5, ring: [4.5, 5.5], budget: 100, nRange: [400, 8], btn: '🧮 CALCULER',
+    s1: { title: '👣 Taille des sauts', l: 'tout petits', r: 'géants', words: ['minuscules', 'petits', 'moyens', 'grands', 'géants'], def: 85 },
+    hint: "💡 Si le trajet calculé sort de la bande, fais des sauts <b>plus petits</b>. Si l'ordinateur est débordé, fais-les <b>plus grands</b>. La bonne taille est entre les deux !",
+    discover: "Un ordinateur ne sait pas tracer une courbe d'un seul coup : il avance par <b>petits sauts</b>. À chaque saut, il regarde où la Terre tire, avance tout droit, puis recommence. C'est une <b>simulation</b>.<br><br>Avec des sauts trop grands, il « coupe les virages » et le trajet calculé s'écarte du vrai. Avec des sauts minuscules, c'est précis… mais il faut énormément de calculs. Les ingénieurs cherchent toujours le <b>plus grand saut qui reste précis</b>. Ce jeu fait pareil : chaque trajet que tu as vu a été calculé par tout petits sauts, des milliers de fois par seconde !" },
+  { kind: 'pid', icon: '🤖', title: 'Le pilote automatique', short: 'Corriger l\'écart sans trembler', stars: true,
+    mission: "Le <b>pilote automatique</b> doit faire monter la fusée jusqu'à la <b class=g>zone verte</b> et l'y <b>garder immobile</b>. Il mesure l'<b>écart</b> avec la zone et règle le moteur tout seul. À toi de régler <b>comment il réagit</b>.",
+    speed: 1.5, cam: { c: [0, 4.2], d: 22, el: 1.38 }, base: 0.62, tgt: 6, tol: 0.6, Tmax: 2.6, tEnd: 14, graph: 'hover', gx: 14, gy: 12, btn: '🤖 DÉMARRER',
+    s1: { title: "🎯 Réaction à l'écart", l: 'molle', r: 'très forte', words: ['très molle', 'molle', 'moyenne', 'forte', 'très forte'], def: 60 },
+    s2: { title: '🧽 Amortisseur', l: 'aucun', r: 'énorme', words: ['aucun', 'léger', 'moyen', 'fort', 'énorme'], def: 0 },
+    hint: "💡 Si la fusée <b>oscille</b> (elle dépasse, redescend, remonte…), ajoute de l'<b>amortisseur</b>. Si elle monte <b>au ralenti</b>, enlève de l'amortisseur ou réagis plus fort. Regarde la forme de la courbe !",
+    discover: "Un pilote automatique fait tout le temps la même chose : il <b>mesure l'écart</b> avec le but, et corrige le moteur. C'est une <b>boucle de régulation</b>.<br><br>S'il réagit fort à l'écart sans rien d'autre, il dépasse le but, revient, le redépasse… ça <b>oscille</b> comme un ressort. L'<b>amortisseur</b> regarde la vitesse et freine les mouvements trop brusques. Trop d'amortisseur, et tout devient lent comme dans du miel. Bien réglés ensemble, ils amènent la fusée vite et sans trembler. Les drones, les fusées qui atterrissent, les thermostats et les régulateurs de vitesse des voitures marchent tous comme ça !" },
+
+  /* ---------- partie 9 : capteurs, messages et programmes ---------- */
+  { kind: 'noise', icon: '📶', title: 'Le capteur qui grésille', short: 'Faire la moyenne des mesures', part: 'Partie 9 — Capteurs, messages et programmes',
+    mission: "Le pilote automatique est bien réglé… mais son <b class=o>capteur de hauteur grésille</b> : chaque mesure est un peu fausse. Choisis <b>combien de mesures</b> il moyenne avant de régler le moteur, pour rejoindre la <b class=g>zone verte</b> sans faire <b>trembler</b> la fusée.",
+    speed: 1.5, cam: { c: [0, 4.2], d: 22, el: 1.38 }, base: 0.62, tgt: 6, tol: 0.6, Tmax: 2.6, tEnd: 14, kp: 0.6, kd: 1.4, sigma: 1.5, dm: 0.1, seed: 2331, shakeMax: 1.6,
+    graph: 'noise', gx: 14, gy: 12, btn: '🤖 DÉMARRER',
+    s1: { title: '🧮 Mesures moyennées', l: 'une seule', r: 'énormément', words: ['une seule', 'quelques-unes', 'une dizaine', 'beaucoup', 'énormément'], def: 0 },
+    hint: "💡 Avec une seule mesure, le moteur suit chaque grésillement et tremble. Avec énormément de mesures, la moyenne est calme… mais <b>en retard</b> sur la vraie hauteur. Cherche entre les deux !",
+    discover: "Un capteur n'est jamais parfait : ses mesures <b>grésillent</b> un peu autour de la vraie valeur. C'est ce qu'on appelle le <b>bruit</b>.<br><br>En faisant la <b>moyenne</b> de plusieurs mesures, les erreurs se compensent : la moyenne est bien plus calme. Mais elle mélange de vieilles mesures avec les nouvelles, donc elle est <b>en retard</b>. Trop peu de mesures, ça tremble ; trop, le pilote réagit à ce qui s'est passé il y a longtemps et la fusée oscille. Ce compromis s'appelle le <b>filtrage</b> : on le retrouve dans les téléphones, les montres de sport, les drones et les voitures." },
+  { kind: 'delay', icon: '📡', title: 'Le robot sur Mars', short: 'Le message met du temps',
+    mission: "Le robot roule sur Mars vers les <b class=g>rochers à étudier</b>. Toi, tu es sur Terre : envoie-lui le message <b class=o>STOP</b> pour qu'il s'arrête dans la <b class=g>zone verte</b>. Attention : le message met du temps à voyager jusqu'à Mars !",
+    speed: 1.0, cam: { c: [-3, -3.5], d: 44, el: 1.3 }, earthX: -24, x0: -8, u: 1.2, sigV: 3.6, stopZone: [12, 14.5], cliff: 18, control: 'timing', btn: '📡 ENVOYER « STOP »',
+    timingText: "⏱️ Le robot roule tout seul. Appuie sur <b>ENVOYER « STOP »</b> au bon moment !",
+    hint: "💡 Pendant que le message voyage, le robot <b>continue de rouler</b>. Regarde la distance entre l'endroit où il était quand tu as envoyé le message et l'endroit où il s'est arrêté : envoie-le d'autant <b>plus tôt</b>.",
+    discover: "Les messages radio voyagent à la vitesse de la lumière, la plus grande vitesse qui existe… mais Mars est si loin qu'il leur faut entre <b>3 et 22 minutes</b> pour y arriver ! Ce temps d'attente s'appelle la <b>latence</b>.<br><br>Pendant que ton ordre voyage, le robot continue ce qu'il faisait : impossible de le piloter comme une voiture téléguidée, il faut <b>anticiper</b>. C'est pour ça qu'on envoie aux robots martiens toute une liste d'instructions à suivre seuls… c'est le défi du niveau suivant ! La latence existe aussi sur Internet et dans les jeux en ligne, en beaucoup plus petit." },
+  { kind: 'program', icon: '🧩', title: 'Programmer le robot', short: "Une suite d'instructions", stars: true, control: 'program',
+    mission: "Le message met trop de temps pour piloter le robot en direct : écris-lui un <b>programme</b> ! Ajoute des instructions, puis appuie sur <b>EXÉCUTER</b>. Il doit atteindre l'<b class=g>échantillon vert</b> sans heurter les <b class=o>rochers</b>.",
+    speed: 1.0, cam: { c: [-1.2, -4.2], d: 25, el: 1.3 }, cols: 5, rows: 4, cell: 2.4, from: [0, 0], dir0: 0, goal: [4, 2], rocks: [[2, 2], [2, 1], [1, 3], [3, 3]], maxLen: 12, best: 8, btn: '▶ EXÉCUTER',
+    hint: "💡 Attention : « gauche » et « droite », c'est la gauche et la droite <b>du robot</b>, pas les tiennes ! Regarde vers où il est tourné avant de choisir. Et ton programme est gardé : corrige seulement l'instruction en rouge.",
+    discover: "Un <b>programme</b>, c'est une liste d'instructions que la machine suit <b>dans l'ordre</b>, sans rien deviner. Si une instruction est fausse, le robot la suit quand même ! Une erreur dans un programme s'appelle un <b>bug</b>, et la corriger, c'est <b>déboguer</b> : tu viens de le faire.<br><br>Une suite d'instructions qui résout un problème s'appelle un <b>algorithme</b>. Les robots sur Mars reçoivent chaque jour un programme comme le tien, préparé et vérifié sur Terre, parce que la latence empêche de les piloter en direct." },
 ];
 LEVELS[0].part = 'Partie 1 — Les bases';
 LEVELS.forEach(L => { if (!L.control) L.control = L.timing ? 'timing' : 'power'; });
@@ -303,6 +344,18 @@ function makeRocket() {
   return { group: g, flame, cargo, heat, tank, tankMat };
 }
 
+// petit robot martien : il regarde vers +x (tourné ensuite selon son cap)
+function makeRover() {
+  const g = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.3, 0.6), new THREE.MeshPhongMaterial({ color: 0xe8e8ef })); body.position.y = 0.35; g.add(body);
+  const pan = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.04, 0.8), new THREE.MeshPhongMaterial({ color: 0x3355aa, emissive: 0x112244 })); pan.position.y = 0.53; g.add(pan);
+  const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.45, 8), new THREE.MeshPhongMaterial({ color: 0xcccccc })); mast.position.set(0.3, 0.75, 0); g.add(mast);
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.14, 0.24), new THREE.MeshPhongMaterial({ color: 0xffd36b, emissive: 0x553300 })); head.position.set(0.34, 1.0, 0); g.add(head);
+  const wm = new THREE.MeshPhongMaterial({ color: 0x333744 });
+  [[-0.32, 0.36], [0.32, 0.36], [-0.32, -0.36], [0.32, -0.36]].forEach(([x, z]) => { const w = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.12, 14), wm); w.rotation.x = Math.PI / 2; w.position.set(x, 0.15, z); g.add(w); });
+  return g;
+}
+
 /* ------------------------------------------------------------------ traces */
 class Trail {
   constructor(color, max = 7000) {
@@ -397,8 +450,22 @@ function asteroidStart() {
   return { x: L.D * c, y: L.D * sn, vx: -L.u * c, vy: -L.u * sn };
 }
 function asteroidMoment() { const W = S.world; return Math.min(100, Math.max(0, W.age / W.T0 * 100)); }
+// flèches : direction du coup de moteur choisie au curseur (0 = vers la droite, 100 = vers la gauche)
+function vecAngle() { return (+$('#power').value) / 100 * Math.PI; }
+// ordinateur de bord : nombre de sauts par tour (curseur à gauche = sauts minuscules = beaucoup de sauts)
+function eulerN() { const L = S.L, [a, b] = L.nRange; return Math.round(Math.exp(Math.log(a) + (+$('#power').value) / 100 * (Math.log(b) - Math.log(a)))); }
+function eulerDt() { const L = S.L; return TAU * Math.sqrt(L.r0 * L.r0 * L.r0 / GM_EARTH) / eulerN(); }
+// pilote automatique : réaction à l'écart et amortisseur
+function pidKp() { const p = +$('#power').value / 100; return 0.04 + p * p * 1.6; }
+function pidKd() { return +$('#power2').value / 100 * 3; }
 // les niveaux où l'on part d'un mouvement déjà en cours (on ne peut pas relancer avant la fin)
-const movingStart = L => !!L.start || L.kind === 'deflect';
+const movingStart = L => !!L.start || L.kind === 'deflect' || L.kind === 'delay';
+// capteur bruité : nombre de mesures moyennées
+function noiseN() { return Math.round(1 + Math.pow(+$('#power').value / 100, 1.5) * 59); }
+// programme : centre d'une case de la grille, et cap du robot (0 = haut, 1 = droite, 2 = bas, 3 = gauche)
+const DIRS = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+function cellXY(i, j) { const L = S.L; return { x: (i - (L.cols - 1) / 2) * L.cell, y: (j - (L.rows - 1) / 2) * L.cell }; }
+const dirAngle = d => Math.PI / 2 - d * Math.PI / 2;
 
 /* point de départ et direction de la fusée pour chaque niveau */
 function padPose() {
@@ -415,6 +482,10 @@ function padPose() {
     case 'balance': return { x: balanceX(), y: 0, dx: 0, dy: 1 };
     case 'free': return { x: -(R_EARTH + 0.25), y: 0, dx: 0, dy: -1 };
     case 'binary': return { x: 0, y: -S.L.R0, dx: 1, dy: 0 };
+    case 'vector': return { x: 0, y: 0, dx: 1, dy: 0 };
+    case 'euler': return { x: 0, y: S.L.r0, dx: -1, dy: 0 };
+    case 'pid': case 'noise': return { x: 0, y: S.L.base, dx: 0, dy: 1 };
+    case 'program': { const c = cellXY(S.L.from[0], S.L.from[1]), d = DIRS[S.L.dir0]; return { x: c.x, y: c.y, dx: d[0], dy: d[1] }; }
     case 'mars': { const W = S.world; return { x: W.eR * Math.cos(W.eA), y: W.eR * Math.sin(W.eA), dx: -Math.sin(W.eA), dy: Math.cos(W.eA) }; }
   }
 }
@@ -432,6 +503,8 @@ function resetShip() {
     const { r, a } = L.start, v = Math.sqrt(GM_EARTH / r);
     S.ship = { x: r * Math.cos(a), y: r * Math.sin(a), vx: -v * Math.sin(a), vy: v * Math.cos(a) };
     S.state = 'coast'; orientRocket(S.ship.vx, S.ship.vy);
+  } else if (L.kind === 'delay') {            // le robot roule déjà quand le niveau commence
+    S.ship = { x: L.x0, y: 0, vx: L.u, vy: 0 }; S.state = 'coast'; W.sig = null;
   } else if (L.kind === 'deflect') {          // l'astéroïde arrive déjà : on le pousse en route
     S.ship = asteroidStart(); S.state = 'coast'; W.age = 0;
     if (W.astMesh) W.astMesh.visible = true;
@@ -445,6 +518,10 @@ function resetShip() {
     S.st = { a1: L.f1, a2: L.f2, att: true, dropT: null, emptyT: null, dropFuel: 0 };
     rocket.tank.visible = true; setTankLevel(1); rocket.tankMat.color.setHex(0xff9a3a); updateStageGauges();
   }
+  if (L.kind === 'vector' && W.arrS) W.arrS.visible = false;
+  if (L.kind === 'euler') { S.eu = null; updateCalcGauge(); }
+  if (L.kind === 'pid' || L.kind === 'noise') { S.pidT = 0; if (W.errArrow) W.errArrow.visible = false; updateShakeGauge(0); }
+  if (L.kind === 'program') { S.pr = null; S.roverA = dirAngle(L.dir0); renderProg(); }
   rocket.group.position.copy(P3(S.ship.x, S.ship.y));
 }
 
@@ -460,13 +537,13 @@ function buildLevel(i) {
   S.state = 'idle'; S.attempts = 0; S.fails = 0; S.simT = 0; S.world = {}; S.chk = {}; S.booms.forEach(b => scene.remove(b)); S.booms = [];
   $('#ticks').innerHTML = '';
   rocket.cargo.visible = L.mass > 1;
-  const sc = { sling: 2.2, moon: 1.4, orbit: 1.15, reentry: 1.1, chase: 1.15, hohmann: 1.3, lander: 2.4, mars: 1.4, track: 0.9, binary: 1.7, free: 1.3, balance: 1.3, skip: 1.1, geo: 1.3, deflect: 1.6 }[L.kind] || 1.35;
+  const sc = { sling: 2.2, moon: 1.4, orbit: 1.15, reentry: 1.1, chase: 1.15, hohmann: 1.3, lander: 2.4, mars: 1.4, track: 0.9, binary: 1.7, free: 1.3, balance: 1.3, skip: 1.1, geo: 1.3, deflect: 1.6, vector: 1.8, euler: 1.3, pid: 2.4, noise: 2.4 }[L.kind] || 1.35;
   rocket.group.scale.setScalar(sc);
   rocket.tank.visible = L.kind === 'fuel' || L.kind === 'stage';
   rocket.tank.scale.setScalar(L.kind === 'stage' ? 1.7 : 1); rocket.tankMat.color.setHex(0xff9a3a);
-  S.curve = null; S.ghostCurves = []; S.log = [];
+  S.curve = null; S.ghostCurves = []; S.log = []; S.prog = []; S.badPc = -1;
 
-  if (!['sling', 'lander', 'mars', 'fuel', 'crew', 'track', 'binary', 'stage', 'geo'].includes(L.kind)) addEarth(); else earthMesh = null;
+  if (!['sling', 'lander', 'mars', 'fuel', 'crew', 'track', 'binary', 'stage', 'geo', 'vector', 'pid', 'noise', 'delay', 'program'].includes(L.kind)) addEarth(); else earthMesh = null;
 
   if (L.kind === 'fuel' || L.kind === 'crew' || L.kind === 'stage') {      // base lunaire
     const moon = new THREE.Mesh(new THREE.SphereGeometry(R_EARTH, 48, 32), new THREE.MeshPhongMaterial({ map: TEX.moon() }));
@@ -698,6 +775,99 @@ function buildLevel(i) {
     W.T0 = t; W.age = 0;
   }
 
+  if (L.kind === 'vector') {                      // espace profond : pas de gravité, seulement des flèches
+    const W = S.world, T = L.target;
+    const st = new THREE.Mesh(new THREE.TorusGeometry(0.6, 0.15, 12, 32), new THREE.MeshPhongMaterial({ color: 0xdfe4ef }));
+    st.position.copy(P3(T.x, T.y)); st.rotation.x = Math.PI / 2; levelGroup.add(st); W.stMesh = st;
+    const zone = new THREE.Mesh(new THREE.CircleGeometry(T.r, 48), new THREE.MeshBasicMaterial({ color: 0x46e07c, transparent: true, opacity: .16, depthWrite: false }));
+    zone.position.copy(P3(T.x, T.y, -0.02)); zone.rotation.x = -Math.PI / 2; levelGroup.add(zone);
+    levelGroup.add(circleLine(T.r, 0x6bff9e, .6, T.x, T.y));
+    const mk = (color) => { const a = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 1, color, 0.55, 0.38); a.position.y = 0.06; levelGroup.add(a); return a; };
+    W.arrV = mk(0x6fb8ff); W.arrK = mk(0xffa040); W.arrS = mk(0x5ee08a); W.arrS.visible = false;
+    W.A = 1.6;                                    // longueur d'une flèche pour une vitesse de 1
+    addLabel('Station', '#7dffaa', () => P3(T.x, T.y + T.r + 0.5));
+    addLabel('glissade', '#8fc8ff', () => S.state === 'idle' ? P3(L.drift * W.A / 2, -0.7) : null);
+    addLabel('moteur', '#ffb36b', () => {
+      if (S.state !== 'idle') return null;
+      const a = vecAngle(), m = L.kick * W.A / 2;
+      return P3(L.drift * W.A + m * Math.cos(a) + 0.9 * Math.sin(a), m * Math.sin(a) - 0.9 * Math.cos(a));
+    });
+    addLabel('le vrai trajet', '#7dffaa', () => W.arrS.visible ? P3(W.sx * W.A * 0.5 - 1.6, W.sy * W.A * 0.5) : null);
+  }
+
+  if (L.kind === 'euler') {
+    const W = S.world, [a, b] = L.ring;
+    const ring = new THREE.Mesh(new THREE.RingGeometry(a, b, 96), new THREE.MeshBasicMaterial({ color: 0x46e07c, transparent: true, opacity: .16, side: THREE.DoubleSide, depthWrite: false }));
+    ring.rotation.x = -Math.PI / 2; levelGroup.add(ring);
+    levelGroup.add(circleLine(L.r0, 0xbfe9ff, .55, 0, 0, true));
+    const arr = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 1, 0xffd36b, 0.35, 0.25);
+    arr.position.y = 0.06; levelGroup.add(arr); W.stepArrow = arr;
+    addLabel('bande verte', '#7dffaa', () => P3(0.72 * b + 0.9, -0.72 * b));
+    addLabel('le vrai trajet', '#bfe9ff', () => P3(L.r0 + 1.3, 0.4));
+    addLabel('un saut', '#ffd36b', () => S.state === 'idle' ? P3(-Math.min(2.5, eulerDt() * Math.sqrt(GM_EARTH / L.r0) / 2), L.r0 + 0.8) : null);
+  }
+
+  if (L.kind === 'pid' || L.kind === 'noise') {  // sol lunaire plat, comme pour l'atterrissage
+    const W = S.world, R = 30, y0 = L.base + L.tgt;
+    const moon = new THREE.Mesh(new THREE.SphereGeometry(R, 96, 48), new THREE.MeshPhongMaterial({ map: TEX.moon() }));
+    moon.position.copy(P3(0, -R)); levelGroup.add(moon);
+    const pad = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.08, 32), new THREE.MeshBasicMaterial({ color: 0x8a90a8, transparent: true, opacity: .7 }));
+    pad.position.copy(P3(0, 0.02)); pad.rotation.x = Math.PI / 2; levelGroup.add(pad);
+    const band = new THREE.Mesh(new THREE.PlaneGeometry(7, 2 * L.tol), new THREE.MeshBasicMaterial({ color: 0x46e07c, transparent: true, opacity: .22, side: THREE.DoubleSide, depthWrite: false }));
+    band.position.copy(P3(0, y0, -0.02)); band.rotation.x = -Math.PI / 2; levelGroup.add(band);
+    const mid = new THREE.Line(new THREE.BufferGeometry().setFromPoints([P3(-3.5, y0), P3(3.5, y0)]),
+      new THREE.LineDashedMaterial({ color: 0x6bff9e, dashSize: .4, gapSize: .3, transparent: true, opacity: .7 }));
+    mid.computeLineDistances(); levelGroup.add(mid);
+    const arr = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(), 1, 0xffd36b, 0.5, 0.35);
+    arr.position.y = 0.08; arr.visible = false; levelGroup.add(arr); W.errArrow = arr;
+    addLabel('zone verte', '#7dffaa', () => P3(5.2, y0));
+    addLabel('écart', '#ffd36b', () => arr.visible ? P3(1.4, (S.ship.y + y0) / 2) : null);
+    addLabel('Lune', '#e6e9f2', () => P3(-6, -1.5));
+  }
+
+  if (L.kind === 'delay') {                       // la Terre (toi) à gauche, Mars et son robot à droite
+    const W = S.world, Z = L.stopZone;
+    const e = new THREE.Mesh(new THREE.SphereGeometry(1.4, 32, 20), earthMat); e.position.copy(P3(L.earthX, 0)); levelGroup.add(e);
+    const halo = sprite(GLOW_BLUE, 4.4, .5); halo.position.copy(P3(L.earthX, 0)); levelGroup.add(halo);
+    const ground = new THREE.Mesh(new THREE.BoxGeometry(L.cliff + 11, 0.5, 7), new THREE.MeshPhongMaterial({ color: 0xb5532f, flatShading: true }));
+    ground.position.copy(P3((L.cliff - 11) / 2, 0, -0.26)); levelGroup.add(ground);
+    const pit = new THREE.Mesh(new THREE.BoxGeometry(5, 0.2, 7), new THREE.MeshPhongMaterial({ color: 0x3a1a12 }));
+    pit.position.copy(P3(L.cliff + 2.5, 0, -1.4)); levelGroup.add(pit);
+    const zone = new THREE.Mesh(new THREE.PlaneGeometry(Z[1] - Z[0], 4), new THREE.MeshBasicMaterial({ color: 0x46e07c, transparent: true, opacity: .6, depthWrite: false }));
+    zone.position.copy(P3((Z[0] + Z[1]) / 2, 0, 0.01)); zone.rotation.x = -Math.PI / 2; levelGroup.add(zone);
+    const rockMat = new THREE.MeshPhongMaterial({ color: 0x7d4a36, flatShading: true });
+    [[13.2, 2.4, 0.7], [14.4, 2.1, 0.45], [12.4, 2.6, 0.4]].forEach(([x, y, r]) => { const m = new THREE.Mesh(new THREE.DodecahedronGeometry(r, 0), rockMat); m.position.copy(P3(x, y, r * 0.6)); levelGroup.add(m); });
+    const path = new THREE.Line(new THREE.BufferGeometry().setFromPoints([P3(L.earthX + 1.5, 1.2, 0.05), P3(L.cliff, 1.2, 0.05)]),
+      new THREE.LineDashedMaterial({ color: 0xffd36b, dashSize: .6, gapSize: .5, transparent: true, opacity: .35 }));
+    path.computeLineDistances(); levelGroup.add(path);
+    const sig = sprite(TEX.glow('rgba(255,220,110,1)'), 1.6, 1); sig.visible = false; levelGroup.add(sig); W.sigMesh = sig;
+    W.rover = makeRover(); W.rover.scale.setScalar(1.4); levelGroup.add(W.rover);
+    addLabel('Terre (toi)', '#9fd0ff', () => P3(L.earthX, -2.3));
+    addLabel('Mars', '#ffb39a', () => P3(-8, -4.2));
+    addLabel('rochers à étudier', '#7dffaa', () => P3((Z[0] + Z[1]) / 2, 4.2));
+    addLabel('cratère', '#ff9a7a', () => P3(L.cliff + 2.5, -4.2));
+    addLabel('message « STOP »', '#ffd36b', () => sig.visible ? P3(W.sig, 2.6) : null);
+  }
+
+  if (L.kind === 'program') {                     // une grille sur Mars : rochers, départ et échantillon
+    const W = S.world, cs = L.cell, wd = L.cols * cs, ht = L.rows * cs;
+    const ground = new THREE.Mesh(new THREE.BoxGeometry(wd + 3, 0.4, ht + 3), new THREE.MeshPhongMaterial({ color: 0xb5532f, flatShading: true }));
+    ground.position.copy(P3(0, 0, -0.21)); levelGroup.add(ground);
+    const pts = [];
+    for (let i = 0; i <= L.cols; i++) { const x = -wd / 2 + i * cs; pts.push(P3(x, -ht / 2, 0.01), P3(x, ht / 2, 0.01)); }
+    for (let j = 0; j <= L.rows; j++) { const y = -ht / 2 + j * cs; pts.push(P3(-wd / 2, y, 0.01), P3(wd / 2, y, 0.01)); }
+    levelGroup.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xffd9c4, transparent: true, opacity: .35 })));
+    const tile = (i, j, color, op) => { const c = cellXY(i, j), m = new THREE.Mesh(new THREE.PlaneGeometry(cs * 0.92, cs * 0.92), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false })); m.position.copy(P3(c.x, c.y, 0.02)); m.rotation.x = -Math.PI / 2; levelGroup.add(m); };
+    tile(L.goal[0], L.goal[1], 0x46e07c, .45); tile(L.from[0], L.from[1], 0x8a90a8, .35);
+    const gc = cellXY(L.goal[0], L.goal[1]);
+    const gem = new THREE.Mesh(new THREE.OctahedronGeometry(0.35), new THREE.MeshPhongMaterial({ color: 0x7dffaa, emissive: 0x1d6b3a })); gem.position.copy(P3(gc.x, gc.y, 0.5)); levelGroup.add(gem); W.gem = gem;
+    const rockMat = new THREE.MeshPhongMaterial({ color: 0x7d4a36, flatShading: true });
+    L.rocks.forEach(([i, j], k) => { const c = cellXY(i, j), m = new THREE.Mesh(new THREE.DodecahedronGeometry(0.85, 0), rockMat); m.position.copy(P3(c.x, c.y, 0.5)); m.rotation.set(k, k * 2, 0); levelGroup.add(m); });
+    W.rover = makeRover(); levelGroup.add(W.rover);
+    addLabel('échantillon', '#7dffaa', () => P3(gc.x, gc.y + cs * 0.62));
+    addLabel('Départ', '#d8d8d8', () => { const c = cellXY(L.from[0], L.from[1]); return P3(c.x, c.y - cs * 0.62); });
+  }
+
   resetShip();
   resetCamera();
   $('#levelName').textContent = `${L.icon}  ${tr('Niveau')} ${i + 1} — ${lt(L, 'title')}`;
@@ -718,6 +888,9 @@ function buildLevel(i) {
   if (s2) { $('#power2Title').textContent = s2.title; $('#end2L').textContent = s2.l; $('#end2R').textContent = s2.r; $('#power2').value = L.s2.def; }
   $('#crewBox').classList.toggle('hidden', L.kind !== 'crew');
   $('#stageBox').classList.toggle('hidden', L.kind !== 'stage');
+  $('#calcBox').classList.toggle('hidden', L.kind !== 'euler');
+  $('#shakeBox').classList.toggle('hidden', L.kind !== 'noise');
+  $('#progBox').classList.toggle('hidden', c !== 'program');
   $('#crewSafe').style.width = L.gLimit ? (100 * (L.gLimit - 2.0) / 6) + '%' : '0';
   updatePowerWord();
   document.body.classList.toggle('hasGraph', !!L.graph);
@@ -776,6 +949,7 @@ function updateCrew() {
 /* ------------------------------------------------------------------ lancement */
 function launch() {
   const L = S.L;
+  if (L.kind === 'program' && S.state !== 'flying' && S.state !== 'success' && !S.prog.length) return showToast(tr("Ton programme est vide : ajoute d'abord des instructions avec les boutons !"), 'warn');
   if (L.kind === 'hohmann' && S.state === 'flying' && S.chk.burns === 1) return burn2();
   if (L.kind === 'stage' && S.state === 'flying' && S.st.att) return dropStage();
   if (S.state === 'flying' || S.state === 'success') return;
@@ -786,6 +960,34 @@ function launch() {
     S.lastPower = P;
     const nx = -s.vy / v, ny = s.vx / v;
     s.vx += nx * dv; s.vy += ny * dv; S.pushN = { x: nx, y: ny };
+  } else if (L.kind === 'vector') {      // la glissade + le coup de moteur, bout à bout
+    const a = vecAngle(), W = S.world; S.lastPower = +$('#power').value;
+    S.ship.vx = L.drift + L.kick * Math.cos(a); S.ship.vy = L.kick * Math.sin(a);
+    W.sx = S.ship.vx; W.sy = S.ship.vy;
+    const len = Math.hypot(W.sx, W.sy);
+    W.arrS.position.copy(P3(0, 0, 0.06)); W.arrS.setDirection(new THREE.Vector3(W.sx, 0, -W.sy).normalize());
+    W.arrS.setLength(len * W.A, 0.55, 0.38); W.arrS.visible = true;
+  } else if (L.kind === 'euler') {       // l'ordinateur part du vrai point de départ, à la vraie vitesse
+    S.lastPower = +$('#power').value;
+    const v = Math.sqrt(GM_EARTH / L.r0), p = padPose();
+    S.ship.vx = -v; S.ship.vy = 0;
+    S.eu = { x: p.x, y: p.y, px: p.x, py: p.y, vx: -v, vy: 0, dt: eulerDt(), N: eulerN(), t: 0, n: 0 }; S.eu.t = S.eu.dt;   // le premier saut est calculé tout de suite
+    const dots = new THREE.Points(new THREE.BufferGeometry(), new THREE.PointsMaterial({ color: 0xffd36b, size: 8, sizeAttenuation: false }));
+    dots.geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array((L.budget + 4) * 3), 3));
+    dots.geometry.setDrawRange(0, 0); dots.frustumCulled = false; dots.userData.oneShot = true; ghostGroup.add(dots); S.eu.dots = dots;
+  } else if (L.kind === 'pid') {
+    S.ship.vx = S.ship.vy = 0; S.lastPower = +$('#power').value; S.lastPower2 = +$('#power2').value;
+    S.kp = pidKp(); S.kd = pidKd(); S.pidT = 0;
+  } else if (L.kind === 'noise') {        // le même pilote, mais il ne voit que la moyenne des dernières mesures
+    S.ship.vx = S.ship.vy = 0; S.lastPower = +$('#power').value;
+    S.kp = L.kp; S.kd = L.kd; S.pidT = 1;
+    const r = rng(L.seed);
+    S.nz = { N: noiseN(), buf: [], avg: 0, tm: L.dm, T: 1, shake: 0, jit: 0, gauss() { let a = 0; for (let k = 0; k < 6; k++) a += r(); return (a - 3) * Math.SQRT2; } };
+  } else if (L.kind === 'delay') {       // le message part de la Terre
+    S.world.sig = L.earthX + 1.5;
+  } else if (L.kind === 'program') {
+    S.pr = { pc: -1, t: 0, dir: L.dir0, i: L.from[0], j: L.from[1], x0: S.ship.x, y0: S.ship.y, x1: S.ship.x, y1: S.ship.y, a0: dirAngle(L.dir0), a1: dirAngle(L.dir0) };
+    S.badPc = -1;
   } else if (L.start) {                        // coup de moteur en orbite, dans le sens du mouvement
     if (L.kind === 'reentry') burnDv = Math.hypot(S.ship.vx, S.ship.vy) * (L.brake - 1);
     else if (L.kind === 'chase') { const P = +$('#power').value; S.lastPower = P; burnDv = (P - 50) / 50 * 0.8; }
@@ -825,6 +1027,10 @@ function launch() {
   if (L.kind === 'stage') S.flameT = 0;
   if (L.kind === 'deflect') S.chk.moment = asteroidMoment();
   if (L.kind === 'geo') S.chk.drift = 0;
+  if (L.kind === 'euler') { S.flameT = 0; S.trail.line.material.color.setHex(0xffd36b); }
+  if (L.kind === 'delay') { addGhostBody(S.ship.x, S.ship.y, 0.25, 0xffa040, 'message envoyé ici'); S.flameT = 0; }
+  if (L.kind === 'program') S.flameT = 0;
+  if (L.kind === 'pid' || L.kind === 'noise') { S.flameT = 0; S.chk.maxH = 0; S.chk.cross = 0; S.chk.side = -1; S.chk.inT = null; }
   if (L.kind === 'lander') S.flameT = 0;
   if (L.kind === 'moon') S.chk.launchMoonA = S.world.moonA;
   if (L.kind === 'mars') { const W = S.world; S.chk.delta = Math.atan2(Math.sin(W.mA - W.eA), Math.cos(W.mA - W.eA)); }
@@ -1012,6 +1218,211 @@ function landerStep(h) {
     return endAttempt(false, "Aïe, <b>un peu trop vite</b> ! Il fallait freiner encore un petit peu avant de toucher le sol.", 'warn');
   }
   if (s.y > 24) return endAttempt(false, "Oups, tu <b>remontes</b> dans l'espace ! Le moteur pousse plus fort que la gravité : relâche-le de temps en temps.", 'warn');
+}
+
+/* flèches : espace profond, sans gravité — la fusée file tout droit */
+function vectorStep(h) {
+  const s = S.ship, L = S.L, T = L.target, C = S.chk, y0 = s.y;
+  s.x += s.vx * h; s.y += s.vy * h; S.flightT += h; S.stepCount++;
+  if (S.stepCount % 3 === 0) S.trail.push(s.x, s.y);
+  if (Math.hypot(s.x - T.x, s.y - T.y) < T.r) {
+    s.vx = s.vy = 0; S.stars = 1; addTick(S.lastPower, '#5ee08a');
+    return endAttempt(true, "🎯 Pile sur la station ! La glissade et le coup de moteur, mis bout à bout, t'ont emmené tout droit.");
+  }
+  if (C.xAt == null && y0 < T.y && s.y >= T.y) C.xAt = s.x;
+  if (s.y > T.y + 6 || Math.abs(s.x) > 15 || s.y < -4 || S.flightT > 9) {
+    if (s.vy < 0.4) { addTick(S.lastPower, '#ff8a7a'); return endAttempt(false, "La fusée ne monte presque pas : pour rejoindre la station, le moteur doit aussi pousser <b>vers le haut</b> !"); }
+    const x = C.xAt != null ? C.xAt : s.x, right = x > T.x, near = Math.abs(x - T.x) < 3.5;
+    addTick(S.lastPower, right ? '#ffb347' : '#c78bff');
+    return endAttempt(false, (near ? tr('Presque ! ') : '') + tr(right
+      ? "La fusée est passée <b>à droite</b> de la station : elle glissait encore vers la droite ! Penche le coup de moteur <b>plus vers la gauche</b>."
+      : "La fusée est passée <b>à gauche</b> de la station : tu as poussé vers la gauche plus fort que la glissade. Penche le coup de moteur <b>un peu moins à gauche</b>."), near ? 'warn' : 'bad', right ? 0xffb347 : 0xc78bff);
+  }
+}
+
+/* ordinateur de bord : le trajet est calculé par grands sauts (un calcul = un saut tout droit) */
+function eulerStep(h) {
+  const L = S.L, E = S.eu, s = S.ship, C = S.chk;
+  S.flightT += h; E.t += h;
+  while (E.t >= E.dt) {
+    E.t -= E.dt;
+    const r = Math.hypot(E.x, E.y), k = GM_EARTH / (r * r * r);
+    E.vx -= k * E.x * E.dt; E.vy -= k * E.y * E.dt;
+    E.px = E.x; E.py = E.y; E.x += E.vx * E.dt; E.y += E.vy * E.dt; E.n++;
+    S.trail.push(E.x, E.y);
+    if (E.n <= L.budget + 3) {
+      const pa = E.dots.geometry.attributes.position; pa.setXYZ(E.n - 1, E.x, 0.03, -E.y); pa.needsUpdate = true; E.dots.geometry.setDrawRange(0, E.n);
+    }
+    updateCalcGauge();
+    const a = Math.atan2(E.y, E.x); let d = a - C.lastAng; d = Math.atan2(Math.sin(d), Math.cos(d)); C.swept += d; C.lastAng = a;
+    const rr = Math.hypot(E.x, E.y), [lo, hi] = L.ring;
+    const snap = () => { s.x = E.x; s.y = E.y; s.vx = E.x - E.px; s.vy = E.y - E.py; };
+    if (rr < lo || rr > hi) {
+      snap();
+      const m = new THREE.Mesh(new THREE.SphereGeometry(0.12, 10, 8), new THREE.MeshBasicMaterial({ color: 0xff7a7a }));
+      m.position.copy(P3(E.x, E.y, 0.05)); m.userData.oneShot = true; ghostGroup.add(m);
+      const near = C.swept > TAU * 0.55; addTick(S.lastPower, '#ff8a7a');
+      return endAttempt(false, (near ? tr('Presque ! ') : '') + tr("Le trajet calculé <b>sort de la bande</b> : avec des sauts aussi grands, l'ordinateur coupe les virages tout droit et se trompe. Fais des sauts <b>plus petits</b>."), near ? 'warn' : 'bad');
+    }
+    if (C.swept >= TAU) {
+      snap(); S.stars = E.N <= 55 ? 3 : E.N <= 75 ? 2 : 1; addTick(S.lastPower, '#5ee08a');
+      return endAttempt(true, tr("🧮 Le trajet calculé est resté dans la bande verte pendant tout le tour !") + ` (${E.n} ${tr('calculs')})`);
+    }
+    if (E.n >= L.budget) {
+      snap(); const near = C.swept > TAU * 0.75; addTick(S.lastPower, '#c78bff');
+      return endAttempt(false, (near ? tr('Presque ! ') : '') + tr("L'ordinateur est <b>débordé</b> : avec des sauts aussi petits, il lui faut trop de calculs pour finir le tour à temps. Fais des sauts <b>un peu plus grands</b>."), near ? 'warn' : 'bad', 0xc78bff);
+    }
+  }
+  const f = E.t / E.dt; s.x = E.px + (E.x - E.px) * f; s.y = E.py + (E.y - E.py) * f; s.vx = E.x - E.px; s.vy = E.y - E.py;
+}
+function updateCalcGauge() {
+  const L = S.L; if (!L || L.kind !== 'euler') return;
+  const live = S.eu && S.state !== 'idle', n = live ? S.eu.n : eulerN(), f = Math.min(1, n / L.budget), g = $('#gCalc');
+  g.style.width = (f * 100) + '%'; g.style.opacity = live ? 1 : .45;
+  g.style.background = n < L.budget * 0.7 ? '#5ee08a' : n < L.budget ? '#ffc65c' : '#ff4a4a';
+}
+
+/* pilote automatique : le moteur est réglé tout seul d'après l'écart avec la zone et la vitesse */
+function pidStep(h) {
+  const L = S.L, s = S.ship, C = S.chk, g = 1, Z = S.nz, noisy = L.kind === 'noise';
+  let T;
+  if (noisy) {                               // une nouvelle mesure tous les dixièmes de seconde
+    Z.tm += h;
+    if (Z.tm >= L.dm) {
+      Z.tm -= L.dm;
+      const m = (s.y - L.base) + L.sigma * Z.gauss(); Z.buf.push(m); if (Z.buf.length > Z.N) Z.buf.shift();
+      Z.avg = Z.buf.reduce((a, b) => a + b, 0) / Z.buf.length;
+      const Tn = Math.max(0, Math.min(L.Tmax, g + S.kp * (L.tgt - Z.avg) - S.kd * s.vy));
+      Z.jit = Math.abs(Tn - Z.T); Z.shake += Z.jit; Z.T = Tn;
+      GRAPH.sampleNoise(S.flightT, m, Z.avg);
+    }
+    T = Z.T;
+  } else T = Math.max(0, Math.min(L.Tmax, g + S.kp * (L.tgt - (s.y - L.base)) - S.kd * s.vy));
+  S.pidT = T;
+  s.vy += (T - g) * h; s.y += s.vy * h; S.flightT += h; S.stepCount++;
+  if (s.y <= L.base) {
+    if (s.vy < -1.0 && S.flightT > 1) {
+      boom(s.x, L.base, 3); addTick(S.lastPower, '#ff8a7a');
+      return endAttempt(false, "Boum ! La fusée est redescendue trop vite : le pilote réagit fort, mais <b>sans amortisseur</b> il se laisse emporter. Ajoute de l'<b>amortisseur</b>.");
+    }
+    s.y = L.base; if (s.vy < 0) s.vy = 0;
+  }
+  if (S.stepCount % 3 === 0) S.trail.push(s.x, s.y);
+  GRAPH.sample(S.flightT);
+  const hh = s.y - L.base, e = hh - L.tgt; C.maxH = Math.max(C.maxH, hh);
+  const side = Math.sign(e); if (side !== C.side && S.flightT > 0.1) { C.cross++; C.side = side; }
+  if (Math.abs(e) < L.tol && Math.abs(s.vy) < 0.3) {
+    if (C.inT == null) C.inT = S.flightT;
+    if (S.flightT - C.inT >= 2) {
+      if (noisy) return noiseVerdict(true);
+      S.stars = C.inT < 5.5 ? 3 : C.inT < 8 ? 2 : 1; addTick(S.lastPower, '#5ee08a'); s.vy = 0; S.pidT = g;
+      return endAttempt(true, S.stars === 3 ? "🤖 Parfait ! Le pilote a amené la fusée dans la zone verte, vite et sans trembler."
+                                            : "🤖 Réussi ! La fusée tient dans la zone verte. Elle a juste mis un peu de temps à se calmer.");
+    }
+  } else C.inT = null;
+  if (C.cross >= 6 || S.flightT >= L.tEnd) {
+    if (noisy) return noiseVerdict(false);
+    const zeta = S.kd / (2 * Math.sqrt(S.kp));
+    if (C.maxH > L.tgt + L.tol) { addTick(S.lastPower, '#ffb347');
+      return endAttempt(false, "Ça <b>oscille</b> ! La fusée dépasse la zone, redescend, remonte… comme un ressort. Ajoute de l'<b>amortisseur</b>.", zeta > 0.3 ? 'warn' : 'bad', 0xffb347); }
+    if (C.maxH >= L.tgt - L.tol) { addTick(S.lastPower, '#ffc65c');
+      return endAttempt(false, "Presque ! La fusée arrive dans la zone, mais trop lentement pour s'y poser à temps. Diminue un peu l'<b>amortisseur</b>, ou réagis un peu plus fort.", 'warn'); }
+    addTick(S.lastPower, zeta > 1.3 ? '#c78bff' : '#ff8a7a');
+    return endAttempt(false, zeta > 1.3
+      ? "La fusée monte <b>au ralenti</b>, comme dans du miel : trop d'<b>amortisseur</b> ! Diminue-le, ou réagis plus fort à l'écart."
+      : "Le pilote réagit <b>trop mollement</b> : la fusée n'arrive pas jusqu'à la zone verte. Augmente la <b>réaction à l'écart</b>.", 'bad', zeta > 1.3 ? 0xc78bff : undefined);
+  }
+}
+
+// capteur bruité : le moteur a-t-il trop tremblé ? sinon, la fusée s'est-elle posée dans la zone ?
+function shakeLevel() { return S.nz && S.flightT > 0.5 ? S.nz.shake / S.flightT : 0; }
+function noiseVerdict(settled) {
+  const L = S.L, C = S.chk, sh = shakeLevel();
+  if (sh > L.shakeMax) {
+    addTick(S.lastPower, '#c78bff');
+    return endAttempt(false, (sh < L.shakeMax * 1.25 ? tr('Presque ! ') : '') + tr("Ça <b>tremble</b> ! Avec si peu de mesures, le pilote croit chaque grésillement du capteur et secoue le moteur dans tous les sens. Fais la moyenne de <b>plus de mesures</b>."), sh < L.shakeMax * 1.25 ? 'warn' : 'bad', 0xc78bff);
+  }
+  if (settled) { S.stars = 1; addTick(S.lastPower, '#5ee08a'); S.ship.vy = 0; S.pidT = 1;
+    return endAttempt(true, "📶 Bien filtré ! La moyenne a calmé les grésillements, sans trop de retard : la fusée tient dans la zone verte."); }
+  addTick(S.lastPower, '#ffb347');
+  if (C.maxH > L.tgt + L.tol) return endAttempt(false, "La moyenne est trop <b>en retard</b> : le pilote réagit à de vieilles mesures, alors la fusée dépasse la zone et oscille. Fais la moyenne de <b>moins de mesures</b>.", 'bad', 0xffb347);
+  return endAttempt(false, "Presque ! La fusée n'a pas réussi à se poser dans la zone à temps. Essaie un nombre de mesures un peu différent.", 'warn', 0xffb347);
+}
+function updateShakeGauge(sh) {
+  const L = S.L; if (!L || L.kind !== 'noise') return;
+  const g = $('#gShake'); g.style.width = Math.min(100, sh / L.shakeMax * 50) + '%';
+  g.style.background = sh < L.shakeMax * 0.75 ? '#5ee08a' : sh <= L.shakeMax ? '#ffc65c' : '#ff4a4a';
+}
+
+/* robot sur Mars : il roule ; le message STOP le rattrape à sa vitesse à lui */
+function delayStep(h) {
+  const L = S.L, s = S.ship, W = S.world, Z = L.stopZone;
+  if (S.dead || s.vx === 0) return;
+  s.x += L.u * h;
+  if (S.state === 'flying') { S.flightT += h; S.stepCount++; if (S.stepCount % 3 === 0) S.trail.push(s.x, s.y); }
+  if (W.sig != null && S.state === 'flying') {
+    W.sig += L.sigV * h;
+    if (W.sig >= s.x) {                      // message reçu : le robot s'arrête
+      s.vx = 0; W.sig = null;
+      if (s.x >= Z[0] && s.x <= Z[1]) { S.stars = 1; return endAttempt(true, "📡 Message reçu ! Le robot s'est arrêté pile devant les rochers à étudier."); }
+      if (s.x < Z[0]) { const near = s.x > Z[0] - 1.5;
+        return endAttempt(false, (near ? tr('Presque ! ') : '') + tr("<b>Trop tôt !</b> Le robot s'est arrêté <b>avant</b> les rochers. Envoie le message un peu plus tard."), near ? 'warn' : 'bad'); }
+      const near = s.x < Z[1] + 1.5;
+      return endAttempt(false, (near ? tr('Presque ! ') : '') + tr("<b>Trop tard !</b> Pendant que le message voyageait, le robot a <b>continué de rouler</b> et a dépassé les rochers. Envoie le message <b>plus tôt</b>."), near ? 'warn' : 'bad', 0xffb347);
+    }
+  }
+  if (s.x > L.cliff) {
+    s.x = L.cliff + 0.6; boom(s.x, s.y, 2.5);
+    if (S.state === 'coast') return endAttempt(false, "Le robot est tombé dans le cratère ! Tu n'as pas envoyé le message <b>STOP</b>.");
+    return endAttempt(false, "Le robot est tombé dans le cratère ! Le message <b>STOP</b> voyageait encore : il fallait l'envoyer <b>bien plus tôt</b>, avant même que le robot arrive près des rochers.");
+  }
+}
+
+/* programme : le robot exécute les instructions une par une */
+const PROG_T = 0.55;
+function programStep(h) {
+  const L = S.L, P = S.pr, s = S.ship;
+  P.t += h; S.flightT += h;
+  if (P.pc < 0 || P.t >= PROG_T) {
+    if (P.pc >= 0) { s.x = P.x1; s.y = P.y1; S.roverA = P.a1; S.trail.push(s.x, s.y); }
+    if (P.pc >= 0 && P.i === L.goal[0] && P.j === L.goal[1]) {
+      const n = S.prog.length; S.stars = n <= L.best ? 3 : n <= L.best + 2 ? 2 : 1;
+      return endAttempt(true, S.stars === 3 ? "🧩 Échantillon récupéré, avec le programme le plus court possible !" : "🧩 Échantillon récupéré ! Ton programme marche.");
+    }
+    P.pc++; P.t = 0; renderProg();
+    if (P.pc >= S.prog.length) { S.badPc = S.prog.length - 1; renderProg();
+      return endAttempt(false, "Le programme est terminé, mais le robot n'est pas sur l'échantillon. Ajoute ou corrige des instructions : ton programme est gardé.", 'warn'); }
+    const op = S.prog[P.pc]; P.x0 = s.x; P.y0 = s.y; P.a0 = S.roverA; P.x1 = s.x; P.y1 = s.y; P.a1 = P.a0;
+    if (op === 'L') { P.dir = (P.dir + 3) % 4; P.a1 = P.a0 + Math.PI / 2; }
+    else if (op === 'R') { P.dir = (P.dir + 1) % 4; P.a1 = P.a0 - Math.PI / 2; }
+    else {
+      const ni = P.i + DIRS[P.dir][0], nj = P.j + DIRS[P.dir][1];
+      if (ni < 0 || nj < 0 || ni >= L.cols || nj >= L.rows) {
+        S.badPc = P.pc; renderProg(); const c = cellXY(ni, nj); s.x = (s.x + c.x) / 2; s.y = (s.y + c.y) / 2; boom(s.x, s.y, 1.6);
+        return endAttempt(false, "Le robot est sorti de la zone d'exploration ! L'instruction <b>en rouge</b> est celle qui a posé problème : corrige ton programme à partir de là.");
+      }
+      if (L.rocks.some(([a, b]) => a === ni && b === nj)) {
+        S.badPc = P.pc; renderProg(); const c = cellXY(ni, nj); s.x = (s.x * 2 + c.x) / 3; s.y = (s.y * 2 + c.y) / 3; boom(s.x, s.y, 1.6);
+        return endAttempt(false, "Boum ! Le robot a heurté un <b>rocher</b>. L'instruction <b>en rouge</b> est celle qui a posé problème : corrige ton programme à partir de là.");
+      }
+      P.i = ni; P.j = nj; const c = cellXY(ni, nj); P.x1 = c.x; P.y1 = c.y;
+    }
+  }
+  const f = Math.min(1, P.t / PROG_T), k = f * f * (3 - 2 * f);
+  s.x = P.x0 + (P.x1 - P.x0) * k; s.y = P.y0 + (P.y1 - P.y0) * k; S.roverA = P.a0 + (P.a1 - P.a0) * k;
+}
+const OP_ICON = { F: '⬆', L: '↰', R: '↱' };
+function renderProg() {
+  const box = $('#progList'); if (!box || S.L.kind !== 'program') return;
+  if (!S.prog.length) { box.innerHTML = `<span class="empty">${tr("Ton programme est vide : ajoute des instructions !")}</span>`; return; }
+  const cur = S.state === 'flying' && S.pr ? S.pr.pc : -1;
+  box.innerHTML = S.prog.map((op, k) => `<span class="op${k === cur ? ' cur' : ''}${k === S.badPc ? ' bad' : ''}"><i>${k + 1}</i>${OP_ICON[op]}</span>`).join('');
+}
+function editProg(op) {
+  const L = S.L; if (L.kind !== 'program' || S.state === 'flying' || S.state === 'success') return;
+  if (op === 'X') S.prog.pop(); else if (S.prog.length < L.maxLen) S.prog.push(op);
+  else showToast(tr('Le programme est plein ! Efface des instructions avec ⌫.'), 'warn');
+  S.badPc = -1; renderProg();
 }
 
 function shipStep(h) {
@@ -1479,8 +1890,10 @@ const GRAPH = (() => {
   function setup() {
     const L = S.L; cursor = null; dirty = true;
     if (!L.graph) return;
-    const T = { height: '📈 Le graphique du voyage', map: '🗺️ La carte : où passe le satellite ?', log: '📒 Le carnet de bord', push: '📒 Le carnet de bord' }[L.graph];
+    const T = { noise: '📈 Ce que voit le pilote', hover: '📈 Le graphique du pilote', height: '📈 Le graphique du voyage', map: '🗺️ La carte : où passe le satellite ?', log: '📒 Le carnet de bord', push: '📒 Le carnet de bord' }[L.graph];
     const G = {
+      noise: "<b style='color:#c9cde0'>Points gris</b> : les mesures du capteur (elles grésillent). <b style='color:#ffb347'>Trait orange</b> : leur moyenne, celle qu'utilise le pilote. <b style='color:#6fe3ff'>Trait bleu</b> : la vraie hauteur.",
+      hover: "Le trait montre la <b>hauteur</b> de la fusée au fil du temps. Le but : monter jusqu'à la <b>bande verte</b>, puis y rester bien à plat. Les traits pâles sont tes essais précédents.",
       height: "Le trait monte quand la fusée s'éloigne de la Terre, et descend quand elle se rapproche. Les <b>perles de couleur</b> marquent les mêmes moments dans l'espace et sur le graphique.",
       map: "La Terre « déroulée » à plat. Le trait montre les endroits survolés par le satellite. <b>En haut</b> = vers le pôle Nord, <b>en bas</b> = vers le pôle Sud.",
       log: "Chaque point est un essai : <b style='color:#5ee08a'>vert</b> = réussi, <b style='color:#ff8a7a'>rouge</b> = trop bas, <b style='color:#ffb347'>orange</b> = trop haut, <b style='color:#c78bff'>violet</b> = astronautes écrasés. Le petit cercle blanc = tes réglages actuels.",
@@ -1492,15 +1905,15 @@ const GRAPH = (() => {
   function begin() {
     const L = S.L; if (!L.graph) return;
     if (L.graph === 'map') { if (S.curve && S.curve.pts.length) { S.ghostCurves.push(S.curve); if (S.ghostCurves.length > 3) S.ghostCurves.shift(); } S.curve = { pts: [] }; }
-    if (L.graph === 'height') {
+    if (L.graph === 'height' || L.graph === 'hover' || L.graph === 'noise') {
       if (S.curve && S.curve.pts.length) { S.ghostCurves.push(S.curve); if (S.ghostCurves.length > 3) S.ghostCurves.shift(); }
-      S.curve = { pts: [], beads: [] };
+      S.curve = { pts: [], beads: [], meas: [], avg: [] };
     }
     dirty = true;
   }
   function sample(t) {
-    const L = S.L; if (L.graph !== 'height' || !S.curve || t > L.gx) return;
-    const s = S.ship, hgt = Math.hypot(s.x, s.y) - R_EARTH, pts = S.curve.pts, last = pts[pts.length - 1];
+    const L = S.L; if ((L.graph !== 'height' && L.graph !== 'hover' && L.graph !== 'noise') || !S.curve || t > L.gx) return;
+    const s = S.ship, hgt = L.tgt != null ? s.y - L.base : Math.hypot(s.x, s.y) - R_EARTH, pts = S.curve.pts, last = pts[pts.length - 1];
     if (!last || t - last.t >= L.gx / 300) { pts.push({ t, h: hgt }); dirty = true; }
     if (L.beads && t >= S.chk.nextBead) {
       const k = S.curve.beads.length, col = beadColor(k);
@@ -1510,6 +1923,7 @@ const GRAPH = (() => {
       S.chk.nextBead += L.gx / 12;
     }
   }
+  function sampleNoise(t, m, avg) { if (!S.curve || !S.curve.meas || t > S.L.gx) return; S.curve.meas.push({ t, h: m }); S.curve.avg.push({ t, h: avg }); dirty = true; }
   function sampleTrack(gp) { if (!S.curve) return; S.curve.pts.push(gp); dirty = true; }
   function setCursor(a, b) { cursor = { a, b }; dirty = true; }
   function endCurve(color) { if (S.curve) S.curve.color = color; dirty = true; }
@@ -1527,16 +1941,16 @@ const GRAPH = (() => {
 
   function drawHeight() {
     const L = S.L;
-    const band = L.apoBand ? L.apoBand : L.zone;
+    const band = L.tgt != null ? [L.tgt - L.tol, L.tgt + L.tol] : (L.apoBand ? L.apoBand : L.zone).map(v => v - R_EARTH);
     // bande verte
-    const y1 = Y(band[1] - R_EARTH), y0 = Y(band[0] - R_EARTH);
+    const y1 = Y(band[1]), y0 = Y(band[0]);
     g.fillStyle = 'rgba(70,224,124,.22)'; g.fillRect(P.l, y1, pw(), y0 - y1);
     g.strokeStyle = 'rgba(107,255,158,.7)'; g.lineWidth = 1.5; g.setLineDash([6, 5]);
     g.beginPath(); g.moveTo(P.l, y1); g.lineTo(Wd - P.r, y1); g.moveTo(P.l, y0); g.lineTo(Wd - P.r, y0); g.stroke(); g.setLineDash([]);
     g.fillStyle = '#7dffaa'; g.font = '600 15px Fredoka, sans-serif'; g.textAlign = 'right'; g.fillText(tr('bande verte'), Wd - P.r - 4, y1 - 6);
     // le sol
     g.strokeStyle = '#4f8fe0'; g.lineWidth = 4; g.beginPath(); g.moveTo(P.l, Y(0)); g.lineTo(Wd - P.r, Y(0)); g.stroke();
-    axes('loin de la Terre ↑', '', 'temps →');
+    axes(L.tgt != null ? 'hauteur ↑' : 'loin de la Terre ↑', '', 'temps →');
     g.fillStyle = '#9fd0ff'; g.textAlign = 'left'; g.font = '600 15px Fredoka, sans-serif'; g.fillText(tr('sol'), P.l + 6, Y(0) - 8);
     const line = (c, color, width) => {
       if (!c.pts.length) return;
@@ -1544,6 +1958,11 @@ const GRAPH = (() => {
       c.pts.forEach((p, k) => { const x = X(p.t), y = Math.max(P.t, Y(p.h)); k ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke();
     };
     S.ghostCurves.forEach(c => line(c, c.color ? c.color + '66' : 'rgba(200,200,230,.3)', 2.5));
+    if (S.curve && S.curve.meas && S.curve.meas.length) {   // capteur bruité : les mesures et leur moyenne
+      g.fillStyle = 'rgba(201,205,224,.55)';
+      S.curve.meas.forEach(p => { g.beginPath(); g.arc(X(p.t), Math.min(Ht - P.b, Math.max(P.t, Y(p.h))), 2.2, 0, TAU); g.fill(); });
+      line({ pts: S.curve.avg }, '#ffb347', 2.5);
+    }
     if (S.curve) {
       line(S.curve, '#6fe3ff', 4);
       S.curve.beads.forEach(b => { g.fillStyle = b.col; g.beginPath(); g.arc(X(b.t), Math.max(P.t, Y(b.h)), 6, 0, TAU); g.fill(); });
@@ -1601,11 +2020,11 @@ const GRAPH = (() => {
   function draw() {
     const L = S.L; if (!L || !L.graph) return;
     g.clearRect(0, 0, Wd, Ht); g.fillStyle = '#0b1130'; g.fillRect(0, 0, Wd, Ht);
-    if (L.graph === 'height') drawHeight();
+    if (L.graph === 'height' || L.graph === 'hover' || L.graph === 'noise') drawHeight();
     if (L.graph === 'map') drawMap();
     if (L.graph === 'log' || L.graph === 'push') drawLog();
   }
-  return { setup, begin, sample, sampleTrack, setCursor, endCurve, frame, draw, logPoint(a, b, color) { S.log.push({ a, b, color }); if (S.log.length > 40) S.log.shift(); dirty = true; } };
+  return { setup, begin, sample, sampleNoise, sampleTrack, setCursor, endCurve, frame, draw, logPoint(a, b, color) { S.log.push({ a, b, color }); if (S.log.length > 40) S.log.shift(); dirty = true; } };
 })();
 
 /* ------------------------------------------------------------------ interface */
@@ -1623,6 +2042,7 @@ function updatePowerWord() {
     $('#powerWord').textContent = tr(p < 15 ? 'freiner fort' : p < 35 ? 'freiner' : p < 48 ? 'freiner un peu' : p <= 52 ? 'rien' : p < 65 ? 'accélérer un peu' : p < 85 ? 'accélérer' : 'accélérer fort');
     return;
   }
+  if (S.L && S.L.kind === 'noise') { const n = noiseN(); $('#powerWord').textContent = n === 1 ? tr('une seule mesure') : `${n} ${tr('mesures')}`; return; }
   const wl = S.L && S.L.s1 ? lt(S.L, 's1').words : POWER_WORDS.map(tr);
   $('#powerWord').textContent = wl[Math.min(wl.length - 1, Math.floor(p / (100.01 / wl.length)))];
   if (S.L && S.L.s2) { const w2 = lt(S.L, 's2').words, p2 = +$('#power2').value; $('#power2Word').textContent = w2[Math.min(w2.length - 1, Math.floor(p2 / (100.01 / w2.length)))]; }
@@ -1664,7 +2084,8 @@ $('#toast').addEventListener('click', fadeToast);
 function showWin() {
   const L = S.L;
   $('#winStars').textContent = L.stars ? '★'.repeat(S.stars) + '☆'.repeat(3 - S.stars) : '';
-  const more = tr({ orbit: ' — sauras-tu faire une orbite toute ronde ?', hohmann: ' — sauras-tu tourner encore plus rond ?', lander: ' — sauras-tu te poser encore plus doucement ?', deflect: ' — sauras-tu le sauver avec une poussée encore plus petite ?' }[L.kind]);
+  const more = tr({ orbit: ' — sauras-tu faire une orbite toute ronde ?', hohmann: ' — sauras-tu tourner encore plus rond ?', lander: ' — sauras-tu te poser encore plus doucement ?', deflect: ' — sauras-tu le sauver avec une poussée encore plus petite ?',
+    euler: ' — sauras-tu y arriver avec encore moins de calculs ?', program: ' — sauras-tu écrire un programme encore plus court ?', pid: ' — sauras-tu la stabiliser encore plus vite ?' }[L.kind]);
   $('#winSub').textContent = (LANG === 'en' ? `Done in ${S.attempts} ${S.attempts > 1 ? 'tries' : 'try'}` : `Réussi en ${S.attempts} essai${S.attempts > 1 ? 's' : ''}`) + (L.stars && S.stars < 3 && more ? more : '');
   $('#winText').innerHTML = lt(L, 'discover');
   $('#btnNext').classList.toggle('hidden', S.li >= LEVELS.length - 1);
@@ -1685,6 +2106,7 @@ function buildMenu() {
 }
 
 $('#btnLaunch').onclick = launch;
+document.querySelectorAll('#progBox [data-op]').forEach(b => { b.onclick = () => editProg(b.dataset.op); });
 // Sur téléphone, le panneau de mission se replie après le lancement ; on le rouvre en le touchant.
 // Sur ordinateur, ces classes n'ont aucun effet visible.
 const compactScreen = () => matchMedia('(max-width:520px) and (orientation:portrait), (max-height:500px) and (orientation:landscape)').matches;
@@ -1707,6 +2129,8 @@ window.addEventListener('hashchange', () => {
 });
 const isLanderFlying = () => S.L.kind === 'lander' && S.state === 'flying';
 window.addEventListener('keydown', e => {
+  const keyOp = { ArrowUp: 'F', ArrowLeft: 'L', ArrowRight: 'R', Backspace: 'X' }[e.code];
+  if (keyOp && S.L.kind === 'program' && $('#menu').classList.contains('hidden') && $('#win').classList.contains('hidden')) { e.preventDefault(); editProg(keyOp); return; }
   if (e.code !== 'Space' || !$('#menu').classList.contains('hidden') || !$('#win').classList.contains('hidden')) return;
   e.preventDefault();
   if (isLanderFlying()) { S.thrust = true; return; }
@@ -1780,7 +2204,12 @@ function advance(dtReal) {
   for (let i = 0; i < n; i++) {
     worldStep(h);
     if (L.kind === 'track') { trackStep(h); continue; }
-    if (S.state === 'flying') { if (L.kind === 'lander') landerStep(h); else shipStep(h); }
+    if (S.state === 'flying') {
+      if (L.kind === 'lander') landerStep(h); else if (L.kind === 'vector') vectorStep(h);
+      else if (L.kind === 'euler') eulerStep(h); else if (L.kind === 'pid' || L.kind === 'noise') pidStep(h);
+      else if (L.kind === 'delay') delayStep(h); else if (L.kind === 'program') programStep(h); else shipStep(h);
+    }
+    else if (L.kind === 'delay') { if (S.state === 'coast') delayStep(h); }
     else if (S.state === 'coast') coastStep(h, false);
     else if (L.keepSim && !docked && (S.state === 'success' || S.state === 'ended')) coastStep(h, true);
   }
@@ -1856,27 +2285,54 @@ function advance(dtReal) {
     if (S.state === 'coast') GRAPH.setCursor(asteroidMoment(), +$('#power').value);
   }
 
+  if (L.kind === 'vector' && S.state === 'idle') {   // la glissade (bleue) et le coup de moteur (orange), bout à bout
+    const a = vecAngle(), A = W.A, dl = L.drift * A, kl = L.kick * A;
+    W.arrV.visible = W.arrK.visible = true;
+    W.arrV.position.copy(P3(0, 0, 0.06)); W.arrV.setDirection(new THREE.Vector3(1, 0, 0)); W.arrV.setLength(dl, 0.55, 0.38);
+    W.arrK.position.copy(P3(dl, 0, 0.06)); W.arrK.setDirection(new THREE.Vector3(Math.cos(a), 0, -Math.sin(a))); W.arrK.setLength(kl, 0.55, 0.38);
+    s.vx = Math.cos(a); s.vy = Math.sin(a); orientRocket(s.vx, s.vy);
+  } else if (L.kind === 'vector') { W.arrV.visible = W.arrK.visible = S.state !== 'success'; }
+  if (L.kind === 'vector') W.stMesh.rotation.z += dtReal * 0.4;
+  if (L.kind === 'euler') {
+    const A = W.stepArrow; A.visible = S.state === 'idle';
+    if (A.visible) { A.position.copy(P3(s.x, s.y, 0.06)); A.setDirection(new THREE.Vector3(-1, 0, 0)); A.setLength(eulerDt() * Math.sqrt(GM_EARTH / L.r0), 0.35, 0.25); updateCalcGauge(); }
+  }
+  if (L.kind === 'noise') updateShakeGauge(S.state === 'idle' ? 0 : shakeLevel());
+  if (L.kind === 'delay' || L.kind === 'program') {     // un robot à la place de la fusée
+    W.rover.visible = !S.dead; W.rover.position.copy(P3(s.x, s.y));
+    if (L.kind === 'program') { W.rover.rotation.y = S.roverA; W.gem.rotation.y += dtReal * 1.5; }
+    if (L.kind === 'delay') { W.sigMesh.visible = W.sig != null && S.state === 'flying'; if (W.sigMesh.visible) W.sigMesh.position.copy(P3(W.sig, 1.2, 0.3)); }
+  }
+  if (L.kind === 'pid' || L.kind === 'noise') {
+    const A = W.errArrow, e = L.base + L.tgt - s.y;
+    A.visible = S.state === 'flying' && Math.abs(e) > 0.4;
+    if (A.visible) { A.position.copy(P3(0.9, s.y, 0.08)); A.setDirection(new THREE.Vector3(0, 0, -Math.sign(e))); A.setLength(Math.abs(e), Math.min(0.5, Math.abs(e) * 0.4), 0.35); }
+  }
+
   if (L.kind === 'track') trackDisplay();
   else {
     rocket.group.position.copy(P3(s.x, s.y));
     const moving = S.state === 'flying' || S.state === 'coast' || (L.keepSim && (S.state === 'success' || S.state === 'ended'));
-    if (L.kind !== 'lander' && moving && !(docked && L.kind === 'mars') && Math.hypot(s.vx, s.vy) > 0.05) orientRocket(s.vx, s.vy);
+    if (L.kind !== 'lander' && L.kind !== 'pid' && L.kind !== 'noise' && !(L.kind === 'vector' && S.state === 'idle') && moving && !(docked && L.kind === 'mars') && Math.hypot(s.vx, s.vy) > 0.05) orientRocket(s.vx, s.vy);
   }
   if (L.kind === 'deflect') {             // la fusée est posée sur le flanc de l'astéroïde et pousse sur le côté
     const v = Math.hypot(s.vx, s.vy) || 1, n = S.pushN && S.state !== 'coast' ? S.pushN : { x: -s.vy / v, y: s.vx / v };
     rocket.group.position.copy(P3(s.x - n.x * 1.1, s.y - n.y * 1.1)); orientRocket(n.x, n.y);
   }
+  if (L.kind === 'delay' || L.kind === 'program') rocket.group.visible = false;
+  if (L.kind === 'noise' && S.state === 'flying' && S.nz) rocket.group.position.x += (Math.random() - .5) * S.nz.jit * 0.35;
   const shaking = S.state === 'flying' && S.chk.heavy;
   if (shaking) rocket.group.position.x += (Math.random() - .5) * 0.06;
   if (L.kind === 'fuel' && S.state === 'flying') setTankLevel(S.fuelLeft / L.fmax);
   S.flameT -= dtReal;
-  rocket.flame.visible = (S.flameT > 0 && S.state === 'flying') || (isLanderFlying() && S.thrust && S.fuel > 0) || burning() || shaking;
+  rocket.flame.visible = (S.flameT > 0 && S.state === 'flying') || (isLanderFlying() && S.thrust && S.fuel > 0) || burning() || shaking
+    || ((L.kind === 'pid' || L.kind === 'noise') && (S.state === 'flying' || S.state === 'success') && S.pidT > 0.05);
   if (L.kind === 'skip' && S.state === 'flying') {
     const k = Math.min(1, (S.chk.drag || 0) / L.heatMax); rocket.heat.visible = k > 0.04;
     rocket.heat.material.opacity = 0.3 + 0.7 * k; rocket.heat.scale.setScalar(0.6 + 1.6 * k);
   } else if (L.kind !== 'reentry' || S.state !== 'flying') rocket.heat.visible = false;
   if (L.kind !== 'skip') { rocket.heat.material.opacity = .85; rocket.heat.scale.setScalar(1.2); }
-  if (rocket.flame.visible) rocket.flame.scale.set(1, 0.8 + Math.random() * 0.5, 1);
+  if (rocket.flame.visible) rocket.flame.scale.set(1, (L.Tmax ? 0.3 + S.pidT / L.Tmax * 1.2 : 1) * (0.8 + Math.random() * 0.5), 1);
   if (S.trail) S.trail.flush();
   GRAPH.frame();
 

@@ -21,7 +21,7 @@ Most of us met orbital mechanics, if ever, as a page of formulas. Star Nav takes
 
 ![Level 1: three attempts — too weak, too strong, then right in the green zone](screenshots/jump-en.png)
 
-## The 25 levels
+## The 31 levels
 
 Each title opens the level directly.
 
@@ -89,10 +89,29 @@ Each title opens the level directly.
 | 24 | [🛑 The backwards slingshot](https://edu-fpar.github.io/star-nav/#level-24) | Passing in front of a planet slows you down: the same planet can speed you up or brake you |
 | 25 | [☄️ Push the asteroid aside](https://edu-fpar.github.io/star-nav/#level-25) | A small push given early beats a big one given late (like the DART mission) |
 
+**Part 8 — Engineers' tools**
+
+Three levels that give a first feel for ideas met later in technical courses (physics, programming, robotics).
+
+| # | Level | What the child discovers |
+|---|---|---|
+| 26 | [➕ Adding arrows](https://edu-fpar.github.io/star-nav/#level-26) | A speed is an arrow: the engine burn is added end to end to the drift (**vectors**) |
+| 27 | [🧮 The onboard computer](https://edu-fpar.github.io/star-nav/#level-27) | A computer works out a path in jumps: too big and it goes wrong, too small and it is overloaded (**step-by-step simulation**) |
+| 28 | [🤖 The autopilot](https://edu-fpar.github.io/star-nav/#level-28) | Measure the gap and correct it: no damper and it wobbles, too much and it is slow (the **control loop**) |
+
+**Part 9 — Sensors, messages and programs**
+
+| # | Level | What the child discovers |
+|---|---|---|
+| 29 | [📶 The crackling sensor](https://edu-fpar.github.io/star-nav/#level-29) | A measurement is always a bit wrong: averaging calms the noise but adds delay (**filtering**) |
+| 30 | [📡 The robot on Mars](https://edu-fpar.github.io/star-nav/#level-30) | A message takes time to arrive: the order must be sent ahead of time (**latency**) |
+| 31 | [🧩 Program the robot](https://edu-fpar.github.io/star-nav/#level-31) | Write a list of instructions, find the one that fails and fix it (**algorithms** and **debugging**) |
+
 ## Controls
 
 - **Drag** the screen to turn around the scene, **scroll** (or pinch) to zoom, **🎯 View** to reset.
 - **Space bar** = launch. On the landing level, hold the button (or the space bar) to fire the engine.
+- In level 31, the **arrow keys** add instructions (↑ forward, ← left, → right) and **Backspace** deletes the last one.
 - **🐢 Slow-mo** helps on the "right moment" levels.
 - **🌐 FR / EN** switches language at any time. **🔗 Share** copies a direct link to the current level.
 

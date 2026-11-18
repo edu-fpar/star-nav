@@ -21,7 +21,7 @@ La mécanique des orbites, quand on la rencontre, c'est en général sous forme 
 
 ![Niveau 1 : trois essais — trop faible, trop fort, puis pile dans la zone verte](screenshots/jump-fr.png)
 
-## Les 25 niveaux
+## Les 31 niveaux
 
 Chaque titre ouvre directement le niveau.
 
@@ -89,10 +89,29 @@ Chaque titre ouvre directement le niveau.
 | 24 | [🛑 La catapulte à l'envers](https://edu-fpar.github.io/star-nav/#niveau-24) | Passer devant une planète freine : la même planète peut accélérer ou ralentir |
 | 25 | [☄️ Dévier l'astéroïde](https://edu-fpar.github.io/star-nav/#niveau-25) | Une petite poussée donnée tôt vaut mieux qu'une grosse donnée tard (comme la mission DART) |
 
+**Partie 8 — Les outils des ingénieurs**
+
+Trois niveaux qui font toucher du doigt des idées qu'on retrouve ensuite dans les formations techniques (physique, programmation, robotique).
+
+| # | Niveau | Ce que l'enfant découvre |
+|---|---|---|
+| 26 | [➕ Additionner les flèches](https://edu-fpar.github.io/star-nav/#niveau-26) | Une vitesse est une flèche : le coup de moteur s'ajoute bout à bout à la glissade (les **vecteurs**) |
+| 27 | [🧮 L'ordinateur de bord](https://edu-fpar.github.io/star-nav/#niveau-27) | Un ordinateur calcule un trajet par sauts : trop grands, il se trompe ; trop petits, il est débordé (la **simulation pas à pas**) |
+| 28 | [🤖 Le pilote automatique](https://edu-fpar.github.io/star-nav/#niveau-28) | Mesurer l'écart et corriger : sans amortisseur ça oscille, avec trop c'est lent (la **boucle de régulation**) |
+
+**Partie 9 — Capteurs, messages et programmes**
+
+| # | Niveau | Ce que l'enfant découvre |
+|---|---|---|
+| 29 | [📶 Le capteur qui grésille](https://edu-fpar.github.io/star-nav/#niveau-29) | Une mesure est toujours un peu fausse : faire la moyenne calme le bruit, mais crée du retard (le **filtrage**) |
+| 30 | [📡 Le robot sur Mars](https://edu-fpar.github.io/star-nav/#niveau-30) | Un message met du temps à arriver : il faut envoyer l'ordre en avance (la **latence**) |
+| 31 | [🧩 Programmer le robot](https://edu-fpar.github.io/star-nav/#niveau-31) | Écrire une suite d'instructions, repérer celle qui coince et la corriger (l'**algorithme** et le **débogage**) |
+
 ## Commandes
 
 - **Faire glisser** l'écran pour tourner autour de la scène, **molette** (ou pincer) pour zoomer, **🎯 Vue** pour recentrer.
 - **Barre d'espace** = lancer. Au niveau de l'atterrissage, garder le bouton (ou la barre d'espace) appuyé pour allumer le moteur.
+- Au niveau 31, les **flèches du clavier** ajoutent des instructions (↑ avancer, ← gauche, → droite) et **Retour arrière** efface la dernière.
 - **🐢 Ralenti** aide pour les niveaux « au bon moment ».
 - **🌐 FR / EN** change de langue à tout moment. **🔗 Partager** copie le lien direct vers le niveau en cours.
 
