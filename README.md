@@ -1,5 +1,7 @@
 # ⭐ Star Nav
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24464415.svg)](https://doi.org/10.5281/zenodo.24464415)
+
 **English** · [Français](README.fr.md)
 
 **A 3D space-navigation game for children (around 8 years old) that builds an intuition for gravity and trajectories — without a single equation.**
@@ -149,6 +151,6 @@ There is nothing to build or install: it's a static site.
 
 **How to cite** (GitHub's *Cite this repository* button, from [CITATION.cff](CITATION.cff)):
 
-> Parlant, F. (2026). *Star Nav* [Educational software]. https://github.com/edu-fpar/star-nav
+> Parlant, F. (2026). *Star Nav* [Educational software]. Zenodo. https://doi.org/10.5281/zenodo.24464415
 
 Using it in class? [Let me know](https://www.linkedin.com/in/francois-parlant/): this feedback helps me improve the tool and spread the word.
