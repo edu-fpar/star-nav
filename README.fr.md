@@ -140,3 +140,15 @@ Il n'y a rien à compiler ni à installer : c'est un site statique.
 **Modifier un niveau.** Les textes et réglages des niveaux sont dans le tableau `LEVELS`, en haut de `game.js`. Les textes anglais de chaque niveau sont dans `i18n.js`, dans le même ordre.
 
 **Compléter la traduction.** Le français est écrit directement dans `game.js` ; `i18n.js` associe chaque phrase française à sa version anglaise. Quand le jeu tourne en anglais, une phrase pas encore traduite s'affiche en français et est signalée dans la console du navigateur (`[i18n] à traduire`).
+
+## Licence et citation
+
+© 2026 François Parlant — [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr). L'usage en classe et en formation est libre, en citant l'auteur ; vos adaptations se partagent sous la même licence. Voir [LICENSE](LICENSE).
+
+**Usage commercial** (organisme de formation, éditeur, marque blanche, scénarios sur mesure, paquets SCORM personnalisés) : une licence commerciale est possible sur accord. [Me contacter](https://edu-fpar.github.io/about.html).
+
+**Citer cet outil** (bouton *Cite this repository* de GitHub, d'après [CITATION.cff](CITATION.cff)) :
+
+> Parlant, F. (2026). *Star Nav* [Logiciel pédagogique]. https://github.com/edu-fpar/star-nav
+
+Vous l'utilisez en cours ? [Dites-le-moi](https://www.linkedin.com/in/francois-parlant/) : ces retours m'aident à faire connaître et améliorer l'outil.
