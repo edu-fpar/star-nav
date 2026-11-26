@@ -1,6 +1,7 @@
 # ⭐ Star Nav
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24464415.svg)](https://doi.org/10.5281/zenodo.24464415)
+Code source : [github.com/edu-fpar/star-nav](https://github.com/edu-fpar/star-nav)
 
 [English](README.md) · **Français**
 
@@ -115,11 +116,11 @@ Trois niveaux qui font toucher du doigt des idées qu'on retrouve ensuite dans l
 - **Barre d'espace** = lancer. Au niveau de l'atterrissage, garder le bouton (ou la barre d'espace) appuyé pour allumer le moteur.
 - Au niveau 31, les **flèches du clavier** ajoutent des instructions (↑ avancer, ← gauche, → droite) et **Retour arrière** efface la dernière.
 - **🐢 Ralenti** aide pour les niveaux « au bon moment ».
-- **🌐 FR / EN** change de langue à tout moment. **🔗 Partager** copie le lien direct vers le niveau en cours.
+- **🌐 FR / EN / ES** change de langue à tout moment (français → anglais → espagnol). **🔗 Partager** copie le lien direct vers le niveau en cours.
 
 ## Liens directs et langue
 
-- `#niveau-7` ouvre le niveau 7 en français, `#level-7` l'ouvre en anglais.
+- `#niveau-7` ouvre le niveau 7 en français, `#level-7` en anglais, `#nivel-7` en espagnol.
 - Sans lien, le jeu suit la langue du navigateur et retient le dernier choix.
 
 ## Lancer le jeu chez soi
@@ -137,11 +138,12 @@ Il n'y a rien à compiler ni à installer : c'est un site statique.
 | `style.css` | Apparence et mise en page |
 | `game.js` | Physique, niveaux, scène 3D, graphiques |
 | `i18n.js` | Traduction anglaise (phrase française → phrase anglaise, et textes des niveaux) |
+| `i18n.es.js` | Traduction espagnole (même structure) |
 | `screenshots/` | Images utilisées dans ces README |
 
-**Modifier un niveau.** Les textes et réglages des niveaux sont dans le tableau `LEVELS`, en haut de `game.js`. Les textes anglais de chaque niveau sont dans `i18n.js`, dans le même ordre.
+**Modifier un niveau.** Les textes et réglages des niveaux sont dans le tableau `LEVELS`, en haut de `game.js`. Les textes anglais et espagnols de chaque niveau sont dans `i18n.js` et `i18n.es.js`, dans le même ordre.
 
-**Compléter la traduction.** Le français est écrit directement dans `game.js` ; `i18n.js` associe chaque phrase française à sa version anglaise. Quand le jeu tourne en anglais, une phrase pas encore traduite s'affiche en français et est signalée dans la console du navigateur (`[i18n] à traduire`).
+**Compléter la traduction.** Le français est écrit directement dans `game.js` ; `i18n.js` associe chaque phrase française à sa version anglaise, `i18n.es.js` à sa version espagnole. Quand le jeu tourne en anglais ou en espagnol, une phrase pas encore traduite s'affiche en français et est signalée dans la console du navigateur (`[i18n] à traduire`).
 
 ## Licence et citation
 

@@ -1,6 +1,7 @@
 # ⭐ Star Nav
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24464415.svg)](https://doi.org/10.5281/zenodo.24464415)
+Source code: [github.com/edu-fpar/star-nav](https://github.com/edu-fpar/star-nav)
 
 **English** · [Français](README.fr.md)
 
@@ -115,11 +116,11 @@ Three levels that give a first feel for ideas met later in technical courses (ph
 - **Space bar** = launch. On the landing level, hold the button (or the space bar) to fire the engine.
 - In level 31, the **arrow keys** add instructions (↑ forward, ← left, → right) and **Backspace** deletes the last one.
 - **🐢 Slow-mo** helps on the "right moment" levels.
-- **🌐 FR / EN** switches language at any time. **🔗 Share** copies a direct link to the current level.
+- **🌐 FR / EN / ES** switches language at any time (French → English → Spanish). **🔗 Share** copies a direct link to the current level.
 
 ## Direct links and language
 
-- `#level-7` opens level 7 in English, `#niveau-7` opens it in French.
+- `#level-7` opens level 7 in English, `#niveau-7` in French, `#nivel-7` in Spanish.
 - Without a link, the game follows the browser's language and remembers the last choice.
 
 ## Running it locally
@@ -137,11 +138,12 @@ There is nothing to build or install: it's a static site.
 | `style.css` | Look and layout |
 | `game.js` | Physics, levels, 3D scene, graphs |
 | `i18n.js` | English translation (French sentence → English sentence, plus level texts) |
+| `i18n.es.js` | Spanish translation (same structure) |
 | `screenshots/` | Images used in these READMEs |
 
-**Editing a level.** Level texts and settings live in the `LEVELS` array at the top of `game.js`. The English texts of each level are in `i18n.js`, in the same order.
+**Editing a level.** Level texts and settings live in the `LEVELS` array at the top of `game.js`. The English and Spanish texts of each level are in `i18n.js` and `i18n.es.js`, in the same order.
 
-**Adding a translation.** French is written directly in `game.js`. `i18n.js` maps each French sentence to its English version. When the game runs in English, any sentence that hasn't been translated yet is shown in French and reported in the browser console (`[i18n] à traduire`).
+**Adding a translation.** French is written directly in `game.js`. `i18n.js` maps each French sentence to its English version, `i18n.es.js` to its Spanish version. When the game runs in English or Spanish, any sentence that hasn't been translated yet is shown in French and reported in the browser console (`[i18n] à traduire`).
 
 ## License and citation
 

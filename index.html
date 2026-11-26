@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Star Nav</title>
-<meta name="description" content="Un jeu 3D de navigation spatiale pour les enfants : décoller, se mettre en orbite, rejoindre la Lune, se faire catapulter par une planète… sans une seule équation. Aussi en anglais.">
+<meta name="description" content="Un jeu 3D de navigation spatiale pour les enfants : décoller, se mettre en orbite, rejoindre la Lune, se faire catapulter par une planète… sans une seule équation. Aussi en anglais et en espagnol.">
 <!-- Aperçu des liens partagés (Open Graph / réseaux sociaux) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Star Nav">
 <meta property="og:title" content="Star Nav — pilote ta fusée avec la gravité">
-<meta property="og:description" content="Un jeu 3D pour les enfants : on essaie, on regarde, on ajuste. 31 niveaux pour comprendre les orbites sans calcul. Version anglaise incluse.">
+<meta property="og:description" content="Un jeu 3D pour les enfants : on essaie, on regarde, on ajuste. 31 niveaux pour comprendre les orbites sans calcul. Versions anglaise et espagnole incluses.">
 <meta property="og:url" content="https://edu-fpar.github.io/star-nav/">
 <meta property="og:image" content="https://edu-fpar.github.io/star-nav/screenshots/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -17,20 +17,21 @@
 <meta property="og:image:alt" content="Une fusée passe derrière une planète géante et se fait lancer vers une station lointaine">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Les éléments marqués data-i sont traduits au démarrage (voir i18n.js) -->
+<!-- Les éléments marqués data-i sont traduits au démarrage (voir i18n.js et i18n.es.js) -->
 <canvas id="scene"></canvas>
 <div id="labels"></div>
 
 <header id="topbar">
   <button id="btnMenu" class="chip" data-i-title title="Choisir un niveau">☰ <span class="txt" data-i>Niveaux</span></button>
   <div id="levelName"></div>
-  <button id="btnLang" class="chip" title="Langue / Language"></button>
+  <button id="btnLang" class="chip" title="Langue / Language / Idioma"></button>
   <button id="btnShare" class="chip" data-i-title title="Copier le lien direct vers ce niveau">🔗 <span class="txt" data-i>Partager</span></button>
   <div id="attempts" class="chip"></div>
 </header>
@@ -127,13 +128,15 @@
 </div>
 
 <div id="loadError" class="overlay hidden">
-  <div class="card"><h2>Oups / Oops</h2>
+  <div class="card"><h2>Oups / Oops / Uy</h2>
     <p>Le moteur 3D n'a pas pu se charger. Vérifie la connexion Internet puis recharge la page.</p>
-    <p>The 3D engine could not load. Check your Internet connection and reload the page.</p></div>
+    <p>The 3D engine could not load. Check your Internet connection and reload the page.</p>
+    <p>No se ha podido cargar el motor 3D. Comprueba la conexión a Internet y vuelve a cargar la página.</p></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="i18n.js"></script>
+<script src="i18n.es.js"></script>
 <script src="game.js"></script>
 </body>
 </html>

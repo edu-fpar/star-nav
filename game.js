@@ -11,23 +11,32 @@ const GM_EARTH = 40, R_EARTH = 2;
 const KPOW = 0.075;          // puissance (0..100) -> vitesse au décollage pour une masse 1
 const H = 0.002;             // pas de calcul de la physique
 
-/* ------------------------------------------------------------------ langues (fr / en)
-   Le français est écrit directement dans le code ; i18n.js fournit la traduction anglaise :
-   - EN.msgs  : « phrase française » -> « English sentence » (traduit au moment de l'affichage)
-   - EN.levels: textes des niveaux, dans le même ordre que LEVELS */
-const EN = window.STARNAV_EN || { levels: [], msgs: {} };
+/* ------------------------------------------------------------------ langues (fr / en / es)
+   Le français est écrit directement dans le code ; i18n.js (anglais) et i18n.es.js (espagnol)
+   fournissent les traductions :
+   - msgs  : « phrase française » -> phrase traduite (traduit au moment de l'affichage)
+   - levels: textes des niveaux, dans le même ordre que LEVELS */
+const DICT = { en: window.STARNAV_EN, es: window.STARNAV_ES };
+const LANGS = ['fr', 'en', 'es'];
+const HASH = { fr: '#niveau-', en: '#level-', es: '#nivel-' };   // préfixe des liens directs = langue
+function langFromUrl(u) {
+  const m = u.match(/lang=(fr|en|es)/i); if (m) return m[1].toLowerCase();
+  if (/level[-=_]?\d/i.test(u)) return 'en';
+  if (/nivel[-=_]?\d/i.test(u)) return 'es';
+  if (/niveau[-=_]?\d/i.test(u)) return 'fr';
+  return null;
+}
 function detectLang() {
-  const u = location.hash + ' ' + location.search;
-  if (/lang=en|level[-=_]?\d/i.test(u)) return 'en';
-  if (/lang=fr|niveau[-=_]?\d/i.test(u)) return 'fr';
-  try { const s = JSON.parse(localStorage.getItem('starnav.lang')); if (s === 'en' || s === 'fr') return s; } catch (e) { /* rien */ }
-  return /^fr/i.test(navigator.language || 'fr') ? 'fr' : 'en';
+  const u = langFromUrl(location.hash + ' ' + location.search); if (u) return u;
+  try { const s = JSON.parse(localStorage.getItem('starnav.lang')); if (LANGS.includes(s)) return s; } catch (e) { /* rien */ }
+  const n = (navigator.language || 'fr').slice(0, 2).toLowerCase();
+  return LANGS.includes(n) ? n : 'en';
 }
 let LANG = detectLang();
 const missing = new Set();
 function tr(s) {
-  if (LANG !== 'en' || typeof s !== 'string' || !s) return s;
-  const t = EN.msgs[s];
+  if (LANG === 'fr' || typeof s !== 'string' || !s) return s;
+  const t = (DICT[LANG] || { msgs: {} }).msgs[s];
   if (t != null) return t;
   if (/[éèàùçêâîôûœ«]/.test(s) && !missing.has(s)) { missing.add(s); console.warn('[i18n] à traduire :', s); }
   return s;
@@ -233,7 +242,7 @@ LEVELS.forEach(L => { if (!L.control) L.control = L.timing ? 'timing' : 'power';
 LEVELS[2].keepSim = true; LEVELS[2].stars = true;
 // texte d'un niveau dans la langue choisie (titre, mission, découverte, indice, curseurs…)
 function lt(L, k) {
-  if (LANG === 'en') { const e = EN.levels[LEVELS.indexOf(L)]; if (e && e[k] != null) return e[k]; }
+  if (DICT[LANG]) { const e = DICT[LANG].levels[LEVELS.indexOf(L)]; if (e && e[k] != null) return e[k]; }
   return L[k];
 }
 
@@ -904,16 +913,16 @@ function buildLevel(i) {
 
 /* ------------------------------------------------------------------ liens directs */
 function setLevelLink(i) {
-  try { history.replaceState(null, '', location.pathname + (LANG === 'en' ? '#level-' : '#niveau-') + (i + 1)); } catch (e) { /* file:// ou bac à sable */ }
+  try { history.replaceState(null, '', location.pathname + HASH[LANG] + (i + 1)); } catch (e) { /* file:// ou bac à sable */ }
 }
 function levelFromUrl() {
-  const m = (location.hash + ' ' + location.search).match(/(?:niveau|level)[-=_]?(\d+)/i);
+  const m = (location.hash + ' ' + location.search).match(/(?:niveau|level|nivel)[-=_]?(\d+)/i);
   if (!m) return null;
   const n = parseInt(m[1], 10) - 1;
   return n >= 0 && n < LEVELS.length ? n : null;
 }
 function shareLink() {
-  const url = location.href.split('#')[0].split('?')[0] + (LANG === 'en' ? '#level-' : '#niveau-') + (S.li + 1);
+  const url = location.href.split('#')[0].split('?')[0] + HASH[LANG] + (S.li + 1);
   const done = () => showToast(tr('🔗 Lien copié ! Colle-le pour partager directement ce niveau.') + `<span class="hint" style="color:var(--muted);word-break:break-all">${url}</span>`, 'good');
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => window.prompt(tr('Copie ce lien :'), url));
   else window.prompt(tr('Copie ce lien :'), url);
@@ -925,8 +934,9 @@ function applyStaticLang() {
   document.documentElement.lang = LANG;
   document.querySelectorAll('[data-i]').forEach(el => { if (el.dataset.fr == null) el.dataset.fr = norm(el.innerHTML); el.innerHTML = tr(el.dataset.fr); });
   document.querySelectorAll('[data-i-title]').forEach(el => { if (el.dataset.frTitle == null) el.dataset.frTitle = el.title; el.title = tr(el.dataset.frTitle); });
-  $('#btnLang').textContent = LANG === 'fr' ? '🌐 EN' : '🌐 FR';
+  $('#btnLang').textContent = '🌐 ' + nextLang().toUpperCase();   // le bouton affiche la langue suivante
 }
+const nextLang = () => LANGS[(LANGS.indexOf(LANG) + 1) % LANGS.length];
 function setLang(l) {
   LANG = l; store.set('lang', l);
   applyStaticLang(); buildMenu();
@@ -2086,7 +2096,7 @@ function showWin() {
   $('#winStars').textContent = L.stars ? '★'.repeat(S.stars) + '☆'.repeat(3 - S.stars) : '';
   const more = tr({ orbit: ' — sauras-tu faire une orbite toute ronde ?', hohmann: ' — sauras-tu tourner encore plus rond ?', lander: ' — sauras-tu te poser encore plus doucement ?', deflect: ' — sauras-tu le sauver avec une poussée encore plus petite ?',
     euler: ' — sauras-tu y arriver avec encore moins de calculs ?', program: ' — sauras-tu écrire un programme encore plus court ?', pid: ' — sauras-tu la stabiliser encore plus vite ?' }[L.kind]);
-  $('#winSub').textContent = (LANG === 'en' ? `Done in ${S.attempts} ${S.attempts > 1 ? 'tries' : 'try'}` : `Réussi en ${S.attempts} essai${S.attempts > 1 ? 's' : ''}`) + (L.stars && S.stars < 3 && more ? more : '');
+  $('#winSub').textContent = ({ en: `Done in ${S.attempts} ${S.attempts > 1 ? 'tries' : 'try'}`, es: `Conseguido en ${S.attempts} intento${S.attempts > 1 ? 's' : ''}` }[LANG] || `Réussi en ${S.attempts} essai${S.attempts > 1 ? 's' : ''}`) + (L.stars && S.stars < 3 && more ? more : '');
   $('#winText').innerHTML = lt(L, 'discover');
   $('#btnNext').classList.toggle('hidden', S.li >= LEVELS.length - 1);
   $('#win').classList.remove('hidden');
@@ -2120,10 +2130,10 @@ $('#btnCam').onclick = () => resetCamera();
 $('#power').addEventListener('input', updatePowerWord);
 $('#power2').addEventListener('input', updatePowerWord);
 $('#btnShare').onclick = shareLink;
-$('#btnLang').onclick = () => setLang(LANG === 'fr' ? 'en' : 'fr');
+$('#btnLang').onclick = () => setLang(nextLang());
 window.addEventListener('hashchange', () => {
   const n = levelFromUrl(); if (n == null) return;
-  const want = /level[-=_]?\d/i.test(location.hash) ? 'en' : 'fr', langChanged = want !== LANG;
+  const want = langFromUrl(location.hash) || LANG, langChanged = want !== LANG;
   if (langChanged) { LANG = want; store.set('lang', want); applyStaticLang(); buildMenu(); }
   if (n !== S.li || langChanged) { $('#menu').classList.add('hidden'); $('#win').classList.add('hidden'); buildLevel(n); }
 });
