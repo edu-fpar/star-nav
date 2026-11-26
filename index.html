@@ -31,7 +31,10 @@
 <header id="topbar">
   <button id="btnMenu" class="chip" data-i-title title="Choisir un niveau">☰ <span class="txt" data-i>Niveaux</span></button>
   <div id="levelName"></div>
-  <button id="btnLang" class="chip" title="Langue / Language / Idioma"></button>
+  <div id="langBox">
+    <button id="btnLang" class="chip" title="Langue / Language / Idioma" aria-haspopup="listbox" aria-expanded="false"></button>
+    <ul id="langList" class="hidden" role="listbox" aria-label="Langue / Language / Idioma"></ul>
+  </div>
   <button id="btnShare" class="chip" data-i-title title="Copier le lien direct vers ce niveau">🔗 <span class="txt" data-i>Partager</span></button>
   <div id="attempts" class="chip"></div>
 </header>

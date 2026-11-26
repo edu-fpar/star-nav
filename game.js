@@ -17,7 +17,8 @@ const H = 0.002;             // pas de calcul de la physique
    - msgs  : « phrase française » -> phrase traduite (traduit au moment de l'affichage)
    - levels: textes des niveaux, dans le même ordre que LEVELS */
 const DICT = { en: window.STARNAV_EN, es: window.STARNAV_ES };
-const LANGS = ['fr', 'en', 'es'];
+const LANG_NAMES = { fr: 'Français', en: 'English', es: 'Español' };   // nom de chaque langue dans la liste
+const LANGS = Object.keys(LANG_NAMES);
 const HASH = { fr: '#niveau-', en: '#level-', es: '#nivel-' };   // préfixe des liens directs = langue
 function langFromUrl(u) {
   const m = u.match(/lang=(fr|en|es)/i); if (m) return m[1].toLowerCase();
@@ -934,9 +935,20 @@ function applyStaticLang() {
   document.documentElement.lang = LANG;
   document.querySelectorAll('[data-i]').forEach(el => { if (el.dataset.fr == null) el.dataset.fr = norm(el.innerHTML); el.innerHTML = tr(el.dataset.fr); });
   document.querySelectorAll('[data-i-title]').forEach(el => { if (el.dataset.frTitle == null) el.dataset.frTitle = el.title; el.title = tr(el.dataset.frTitle); });
-  $('#btnLang').textContent = '🌐 ' + nextLang().toUpperCase();   // le bouton affiche la langue suivante
+  $('#btnLang').innerHTML = `🌐 ${LANG.toUpperCase()} <span class="caret">▾</span>`;
+  buildLangList();
 }
-const nextLang = () => LANGS[(LANGS.indexOf(LANG) + 1) % LANGS.length];
+/* liste déroulante des langues */
+function buildLangList() {
+  $('#langList').innerHTML = LANGS.map(l =>
+    `<li role="option" aria-selected="${l === LANG}"><button type="button" lang="${l}" data-lang="${l}">` +
+    `<span class="name">${LANG_NAMES[l]}</span><span class="code">${l.toUpperCase()}</span></button></li>`).join('');
+}
+function toggleLangList(open) {
+  $('#langList').classList.toggle('hidden', !open);
+  $('#btnLang').setAttribute('aria-expanded', open);
+  if (open) ($('#langList [aria-selected=true] button') || $('#langList button')).focus();
+}
 function setLang(l) {
   LANG = l; store.set('lang', l);
   applyStaticLang(); buildMenu();
@@ -2130,7 +2142,19 @@ $('#btnCam').onclick = () => resetCamera();
 $('#power').addEventListener('input', updatePowerWord);
 $('#power2').addEventListener('input', updatePowerWord);
 $('#btnShare').onclick = shareLink;
-$('#btnLang').onclick = () => setLang(nextLang());
+$('#btnLang').onclick = () => toggleLangList($('#langList').classList.contains('hidden'));
+$('#langList').addEventListener('click', e => {
+  const b = e.target.closest('button[data-lang]'); if (!b) return;
+  toggleLangList(false); $('#btnLang').focus();
+  if (b.dataset.lang !== LANG) setLang(b.dataset.lang);
+});
+$('#langList').addEventListener('keydown', e => {
+  const items = [...$('#langList').querySelectorAll('button')], i = items.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); items[(i + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length].focus(); }
+  else if (e.key === 'Escape') { toggleLangList(false); $('#btnLang').focus(); }
+  e.stopPropagation();   // la barre d'espace choisit la langue au lieu de LANCER
+});
+document.addEventListener('pointerdown', e => { if (!e.target.closest('#langBox')) toggleLangList(false); });
 window.addEventListener('hashchange', () => {
   const n = levelFromUrl(); if (n == null) return;
   const want = langFromUrl(location.hash) || LANG, langChanged = want !== LANG;

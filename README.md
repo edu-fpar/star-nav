@@ -116,7 +116,7 @@ Three levels that give a first feel for ideas met later in technical courses (ph
 - **Space bar** = launch. On the landing level, hold the button (or the space bar) to fire the engine.
 - In level 31, the **arrow keys** add instructions (↑ forward, ← left, → right) and **Backspace** deletes the last one.
 - **🐢 Slow-mo** helps on the "right moment" levels.
-- **🌐 FR / EN / ES** switches language at any time (French → English → Spanish). **🔗 Share** copies a direct link to the current level.
+- **🌐** opens the language list (Français, English, Español). **🔗 Share** copies a direct link to the current level.
 
 ## Direct links and language
 

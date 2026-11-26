@@ -116,7 +116,7 @@ Trois niveaux qui font toucher du doigt des idées qu'on retrouve ensuite dans l
 - **Barre d'espace** = lancer. Au niveau de l'atterrissage, garder le bouton (ou la barre d'espace) appuyé pour allumer le moteur.
 - Au niveau 31, les **flèches du clavier** ajoutent des instructions (↑ avancer, ← gauche, → droite) et **Retour arrière** efface la dernière.
 - **🐢 Ralenti** aide pour les niveaux « au bon moment ».
-- **🌐 FR / EN / ES** change de langue à tout moment (français → anglais → espagnol). **🔗 Partager** copie le lien direct vers le niveau en cours.
+- **🌐** ouvre la liste des langues (Français, English, Español). **🔗 Partager** copie le lien direct vers le niveau en cours.
 
 ## Liens directs et langue
 
