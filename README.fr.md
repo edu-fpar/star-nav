@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24464415.svg)](https://doi.org/10.5281/zenodo.24464415)
 Code source : [github.com/edu-fpar/star-nav](https://github.com/edu-fpar/star-nav)
 
-[English](README.md) · **Français**
+[English](README.md) · **Français** · [Español](README.es.md)
 
 **Un jeu 3D de navigation spatiale pour les enfants (vers 8 ans), qui donne l'intuition de la gravité et des trajectoires — sans une seule équation.**
 
